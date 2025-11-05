@@ -1,0 +1,103 @@
+{
+  "rubric_scores": {
+    "scores": {
+      "Time Management": "NA",
+      "POI Engagement": 3,
+      "Delivery & Style": 1,
+      "Argument Completeness": 1,
+      "Theory Application": 1,
+      "Rebuttal Effectiveness": "NA",
+      "Teamwork & Extension": "NA",
+      "Feedback Implementation": 3
+    },
+    "justifications": {
+      "Time Management": "The speech was only 57 seconds long, which is significantly under the expected 8 minutes. This suggests the speech was incomplete.",
+      "POI Engagement": "The speaker took one POI, which is appropriate, but the response was more of a dismissal than a structured rebuttal.",
+      "Delivery & Style": "The opening was confusing and off-topic. The tone was overly casual and lacked the formal structure and persuasive language expected in a debate.",
+      "Argument Completeness": "Arguments were presented as a list of assertions without reasoning, evidence, or impact analysis. Claims were hyperbolic and unsupported.",
+      "Theory Application": "The speech lacked a clear framework, signposting, or any recognizable debate structure. It did not define the terms of the motion or establish a clear burden for the proposition.",
+      "Rebuttal Effectiveness": "Not applicable for the first speaker.",
+      "Teamwork & Extension": "Not applicable for the first speaker.",
+      "Feedback Implementation": "Assuming a neutral baseline as no prior feedback was provided."
+    },
+    "average_score": 2,
+    "total_scored_rubrics": 5
+  },
+  "strategic_overview": {
+    "hook_and_signposting": "The opening was ineffective, starting with a confusing comment about a recording failure instead of a hook related to the motion. The speech lacked any signposting, making it difficult for the audience to follow the intended structure or identify the key arguments being presented.",
+    "strategic_assessment": "As the first speaker, the primary role is to establish a clear case for your side. This speech did not fulfill that role. It presented a series of disconnected and unsubstantiated claims about the world's problems without organizing them into coherent arguments. The core task of defining the debate and laying a solid foundation for the proposition was not achieved.",
+    "missing_arguments": "The case was missing a clear framework. A stronger approach would be to define what 'crying' represents (e.g., a state of justified despair, a rejection of toxic optimism) and then structure arguments around distinct themes like irreversible environmental damage, social fragmentation, or existential technological risks."
+  },
+  "playable_moments": [
+    {
+      "chunk_id": 0,
+      "start_seconds": 0,
+      "end_seconds": 58,
+      "start_time": "00:00",
+      "end_time": "00:57",
+      "category": "weak",
+      "severity": "critical",
+      "what_they_said": "Hi everyone, I wanted to know why the first time the recording fails. Maybe there's something that's happening in there. All right, so ladies and gentlemen, fellow with our smugles, I think it's a ...",
+      "issue": "The speech begins with an irrelevant comment about a recording failure, which wastes the crucial opening seconds and undermines your credibility.",
+      "recommendation": "Always start with a powerful, motion-relevant hook. For this motion, you could begin with: 'We are told to look on the bright side, to find the silver lining. But our proposition today is that such optimism is a dangerous delusion. We are here to argue that the only rational response to the state of our world is to cry.'"
+    },
+    {
+      "chunk_id": 0,
+      "start_seconds": 0,
+      "end_seconds": 58,
+      "start_time": "00:00",
+      "end_time": "00:57",
+      "category": "weak",
+      "severity": "critical",
+      "what_they_said": "Hi everyone, I wanted to know why the first time the recording fails. Maybe there's something that's happening in there. All right, so ladies and gentlemen, fellow with our smugles, I think it's a ...",
+      "issue": "You list a series of problems ('forest fires, landslides... AI that will kill everyone') as unsupported assertions. The hyperbolic language makes the claims easy for the opposition to dismiss.",
+      "recommendation": "Structure these ideas into a formal argument. For example: 'Our first point is on the acceleration of irreversible environmental collapse. This isn't just about isolated incidents; it's about crossing systemic tipping points which threaten global stability. The scale of this crisis alone justifies a profound sense of loss.'"
+    },
+    {
+      "chunk_id": 0,
+      "start_seconds": 0,
+      "end_seconds": 58,
+      "start_time": "00:00",
+      "end_time": "00:57",
+      "category": "gap",
+      "severity": "critical",
+      "what_they_said": "Hi everyone, I wanted to know why the first time the recording fails. Maybe there's something that's happening in there. All right, so ladies and gentlemen, fellow with our smugles, I think it's a ...",
+      "issue": "In response to the POI about progress, you assert that the rate of destruction is faster than the rate of progress, but you don't provide a metric or reason why this is true.",
+      "recommendation": "Provide a clear weighing mechanism. Argue that progress in areas like education is meaningless if it's happening on a planet facing existential threats. Your metric should be that survival and stability must precede other forms of progress, and since those foundations are threatened, any other progress is moot."
+    },
+    {
+      "chunk_id": 0,
+      "start_seconds": 0,
+      "end_seconds": 58,
+      "start_time": "00:00",
+      "end_time": "00:57",
+      "category": "weak",
+      "severity": "critical",
+      "what_they_said": "Hi everyone, I wanted to know why the first time the recording fails. Maybe there's something that's happening in there. All right, so ladies and gentlemen, fellow with our smugles, I think it's a ...",
+      "issue": "The claim that 'More people get killed right now' is a broad, factually questionable statement that damages your credibility, as many metrics of violence have declined.",
+      "recommendation": "Be more precise with your claims. Instead of focusing on the number of people killed, focus on the *scale of risk*. Argue that while deaths from conventional war may be down, the risk of a civilization-ending catastrophe from climate change or advanced AI is unprecedentedly high."
+    },
+    {
+      "chunk_id": 0,
+      "start_seconds": 0,
+      "end_seconds": 58,
+      "start_time": "00:00",
+      "end_time": "00:57",
+      "category": "transition",
+      "severity": "critical",
+      "what_they_said": "Hi everyone, I wanted to know why the first time the recording fails. Maybe there's something that's happening in there. All right, so ladies and gentlemen, fellow with our smugles, I think it's a ...",
+      "issue": "Ending your line of thought with 'So yeah, that's how it is' is overly casual and weak. It signals that you have run out of analysis.",
+      "recommendation": "Always conclude your points with a strong summary statement that links back to the motion. For example: 'This imbalance, where our capacity for destruction far outpaces our wisdom, is precisely the tragedy for which this house would cry.'"
+    }
+  ],
+  "audio_metadata": {
+    "url": "/storage/38d8964b-f40a-4011-bded-1175251da93e_1761591392146.m4a",
+    "duration_seconds": 58
+  },
+  "chunks_metadata": {
+    "total_chunks": 1,
+    "chunk_labels": [
+      "Hook & Opening"
+    ]
+  }
+}

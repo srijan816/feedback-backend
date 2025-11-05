@@ -1,0 +1,172 @@
+[
+  {
+    "chunk_id": 0,
+    "label": "Hook & Opening",
+    "start_ms": 0,
+    "end_ms": 50830,
+    "start_time": "00:00",
+    "end_time": "00:50",
+    "text": "I'm from South Korea. Hi everyone, I'm Sharmila. My preferred pronouns are she or they and welcome and good luck to both teams. Hi everyone, my name is Shruti. I'm from India. My pronouns are she or they. Good luck for the round. Give",
+    "word_count": 44
+  },
+  {
+    "chunk_id": 1,
+    "label": "Model/Setup",
+    "start_ms": 50830,
+    "end_ms": 85890,
+    "start_time": "00:50",
+    "end_time": "01:25",
+    "text": "me a sec. Am I audible invisible? I'll take POIs in the chat, thanks. Big Pharma takes advantage of the desperation of the",
+    "word_count": 23
+  },
+  {
+    "chunk_id": 2,
+    "label": "Model/Setup",
+    "start_ms": 85890,
+    "end_ms": 120940,
+    "start_time": "01:25",
+    "end_time": "02:00",
+    "text": "sick and dying to misinform people to neglect them and to make them pay exorbitant prices for drugs. On proposition, we say it's time to end their tyranny. In this speech, first I'll model the debate, then I'll talk about why we get more accessibility for treatments. Secondly, why we get more drugs that wouldn't otherwise be developed. And my third point will be about misinformation from pharma companies. Three points of setup in this debate. Firstly, by nationalized, we would buy back companies and compensate the shareholders of those companies. Now the federal government owns these these companies. Second point of setup. These national pharma companies would have the best scientists, doctors and business people that",
+    "word_count": 117
+  },
+  {
+    "chunk_id": 3,
+    "label": "Argument 2",
+    "start_ms": 121020,
+    "end_ms": 156310,
+    "start_time": "02:01",
+    "end_time": "02:36",
+    "text": "we can hire in the same way that nationalized space agencies like NASA attract the brightest scientists of that country. We might hire people from the old pharma industry. We might attract new talent. But the point is that we have good people working for us. Thirdly, we would publicize what the government is researching and make regular reports on how, for example, the government is allocating funds. Which means that our nationalized company would be very transparent. My first point then is going to be about the accessibility of drugs. The characterization here is that private pharma companies are natural oligopolies with a few large players. And the structural reason for this is because there are very high fixed",
+    "word_count": 120
+  },
+  {
+    "chunk_id": 4,
+    "label": "Argument 2",
+    "start_ms": 156390,
+    "end_ms": 191680,
+    "start_time": "02:36",
+    "end_time": "03:11",
+    "text": "costs of technology. For instance, if you're studying stem cells, you need very expensive technology to do that. But also there are high cost to speculative R&D, POIs in chat. So many people get, many firms get weeded out before they can even enter the industry because they aren't able to establish a foothold and become profitable. There are three reasons then why private pharma companies are problematic. Firstly, there's little competition because oftentimes these firms operate in different fields, even if there are multiple firms in the industry. And this is because there's a first mover advantage in the pharma industry. So once you start establishing a drug, everybody",
+    "word_count": 110
+  },
+  {
+    "chunk_id": 5,
+    "label": "Argument 3",
+    "start_ms": 191680,
+    "end_ms": 226780,
+    "start_time": "03:11",
+    "end_time": "03:46",
+    "text": "flocks to you and it's harder for future firms to come in. And The opposition might respond like COVID to this. Most diseases are not as widespread as COVID and not every company is starting at the same time. Once one company has gotten the opportunity to entrench itself, it is much harder in the future. So this is why insulin is almost exclusively produced by NOVA in the States, and why epinephrine is monopolized by EpiPen. The reason that governments are better is because the government might be similarly a monopoly, but different segments of drug research can share technology in between them. So that looks like if research for one disease is researching stem cells, that",
+    "word_count": 118
+  },
+  {
+    "chunk_id": 6,
+    "label": "Argument 3",
+    "start_ms": 226860,
+    "end_ms": 261970,
+    "start_time": "03:46",
+    "end_time": "04:21",
+    "text": "could be cross-applied to cancer. Well, in opposition's world, that would be two different firms. Or if you're doing mRNA research for COVID, that can be applied to other vaccines in the future that would otherwise be developed by a different firm. Therefore, we allow technology sharing that improves the efficiency of development. Secondly, you need IP protections like patents to incentivize production. This is why opposition can't just say they'll have price caps. These are impossible because then firms are just stopped producing drugs. Prices are driven up by patented technology. Since there's no competition oftentimes, it becomes extremely unaffordable. This is why insulin is about $10,000 for a month's supply in the United",
+    "word_count": 115
+  },
+  {
+    "chunk_id": 7,
+    "label": "Argument 4",
+    "start_ms": 262130,
+    "end_ms": 297390,
+    "start_time": "04:22",
+    "end_time": "04:57",
+    "text": "States, but it's barely above production costs in Canada. It's because in the US, private firms and their patents make it so there's largely only one seller and they can jack up prices however they want. On the flip side, governments are held accountable by voters. There's a huge backlash if people die or if they're forced in having to pay exorbitant amounts of money for life-saving treatment. Governments are made to seem like tyrants in these cases. And even if big pharma is seen as the same, they don't care because all they want is profit, whereas governments care about their perception. Thirdly, pharmaceutical goods are inelastic. And what we mean by that is that people are desperate if they have something like cancer,",
+    "word_count": 125
+  },
+  {
+    "chunk_id": 8,
+    "label": "Argument 4",
+    "start_ms": 297550,
+    "end_ms": 335830,
+    "start_time": "04:57",
+    "end_time": "05:35",
+    "text": "so they will buy these drugs no matter what the cost is. And since companies are profit maximizing, it's very easy to price gouge as much as you want because people need those drugs to survive. Save their lives. The government, on the other hand, is not profit driven. They can have lower prices and they can suffer losses. That is because they have a lot of other avenues of funding. For instance, your tax space, whereas companies don't have the same thing. If they don't get as much profit as they put in, there's an existential threat to the company, which means there's a far greater incentive to price gouge. Thank",
+    "word_count": 112
+  },
+  {
+    "chunk_id": 9,
+    "label": "Argument 5",
+    "start_ms": 336710,
+    "end_ms": 498140,
+    "start_time": "05:36",
+    "end_time": "08:18",
+    "text": "you. So",
+    "word_count": 2
+  },
+  {
+    "chunk_id": 10,
+    "label": "Argument 5",
+    "start_ms": 498380,
+    "end_ms": 533410,
+    "start_time": "08:18",
+    "end_time": "08:53",
+    "text": "on the flip side, the government is not profit driven because they have other sources of funding such as tax revenue. So that means they can have lower prices and suffer losses. On the flip side, not getting as much out of a drug as you put in through R&D is an existential threat to a company, therefore they price gouge. The impact at this point is that it is super important for people to have access to life saving medication. It's not enough for drugs to exist, you need to access these drugs without having to forego paying your rent, without having to go into debt, or without having to not seek treatment in the first place because you need to pay for your kids schooling instead. On my second point then about why you",
+    "word_count": 136
+  },
+  {
+    "chunk_id": 11,
+    "label": "Argument 6",
+    "start_ms": 533490,
+    "end_ms": 568920,
+    "start_time": "08:53",
+    "end_time": "09:28",
+    "text": "get more niche drugs, but before that, I'll take a POI. Okay, so I think that firstly, many drugs can be developed within a four-year term, see the development of COVID drugs, but also if you gain a significant amount of like progress in one particular drug. We think even if your predecessor is able to continue that research, you still get a lot of clout, especially through our reports that we mentioned in our model. Second point on more niche drugs. The premise here is that private corporations have no incentive to research drugs that won't be profitable",
+    "word_count": 99
+  },
+  {
+    "chunk_id": 12,
+    "label": "Argument 6",
+    "start_ms": 569080,
+    "end_ms": 604120,
+    "start_time": "09:29",
+    "end_time": "10:04",
+    "text": "because they want to get as much money as possible. So even if the return might be high, it was still unlikely to take these risks since there's like a 2% chance of that drug being successful. But now you're $10 billion in the whole. This looks like developing drugs for terminal illnesses when you know that you won't get recurring customers or being unlikely to develop cures for diseases that primarily afflict poor people, such as mesothelioma or asbestos. The comparative then is firstly, that a government has a large voter base that cares about people such as terminal patients, people of parents and family members who suffer from these illnesses and who they want cures for. The government cares about people's emotions more",
+    "word_count": 125
+  },
+  {
+    "chunk_id": 13,
+    "label": "Argument 7",
+    "start_ms": 604120,
+    "end_ms": 639150,
+    "start_time": "10:04",
+    "end_time": "10:39",
+    "text": "than companies do. Secondly, for groups like poor people, their political power exceeds their economic power. So they might not have money to buy drugs or to pressure a company as a shareholder to develop particular forms of drugs, but they have a vote and can pressure the government to innovate in certain fields. Thirdly, even in the cases when these niche drugs are produced, they are marketed at insanely high prices, like $100,000 to justify the huge R&D costs when you're only selling to a small market that you can't diffuse the costs in. However, governments have a huge market share across different fields. So maybe they develop a drug for a disease that is very common. And so",
+    "word_count": 120
+  },
+  {
+    "chunk_id": 14,
+    "label": "Argument 7",
+    "start_ms": 639390,
+    "end_ms": 674530,
+    "start_time": "10:39",
+    "end_time": "11:14",
+    "text": "they can take the profits from that to offset the costs of investing in a niche disease. These people matter too. Even if your disease isn't experienced by a large portion of the population, you still deserve to have treatment. Thirdly, on misinformation by companies. Three parts of this argument. Firstly, private companies have an incentive to cover up concerns about their drugs, i.e. that drug being dangerous. The government, on the other hand, has greater scrutiny on them. As per our model, companies, on the other hand, can say their information is protected because it's intellectual property. On the flip side, there's a democratic expectation for investigative journalism into the government. Secondly, companies have",
+    "word_count": 115
+  },
+  {
+    "chunk_id": 15,
+    "label": "Argument 8",
+    "start_ms": 674610,
+    "end_ms": 709720,
+    "start_time": "11:14",
+    "end_time": "11:49",
+    "text": "an incentive to manage people's symptoms instead of actually curing their diseases to keep you coming back. This is why they want you to be on insulin, where you need to get a weekly shot instead of actually developing a cure, because then you're one and done, you aren't a money source for them anymore. That's why the new Alzheimer's drug is $50,000 to slow the spread of the disease and giving people false hope instead of actually curing it. The state is better here because it loses money when people keep being sick while pharma companies gain money because the state has to do things like pay for treatment and hospitals. Therefore it's more likely to invest in cures. Thirdly, on over prescription, companies want to get you hooked",
+    "word_count": 130
+  },
+  {
+    "chunk_id": 16,
+    "label": "Argument 8",
+    "start_ms": 709720,
+    "end_ms": 779790,
+    "start_time": "11:49",
+    "end_time": "12:59",
+    "text": "on a drug. This is why drug companies like Purdue Pharma started the opioid epidemic that claimed thousands of lives, where pharma companies took doctors out for lunches and ski vacations and put out ads that marketed opioids. People lost their life savings to line the pockets of CEOs. On the other hand, the state has to clean up the mess when people take time off work, when they get addicted, when things like underground crime rings pop up. Therefore, they don't have an incentive to over prescribe in the same way. It is time to topple big pharma's tyranny over our health. I'm very proud to propose. Great.",
+    "word_count": 109
+  }
+]

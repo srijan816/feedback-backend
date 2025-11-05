@@ -1,0 +1,24 @@
+{
+  "scores": {
+    "Time Management": 5,
+    "POI Engagement": 3,
+    "Delivery & Style": 3,
+    "Argument Completeness": 4,
+    "Theory Application": 4,
+    "Rebuttal Effectiveness": "NA",
+    "Teamwork & Extension": "NA",
+    "Feedback Implementation": 3
+  },
+  "justifications": {
+    "Time Management": "The student spoke for 8:07, which is within 15 seconds of the 8:00 target time, demonstrating excellent time adherence.",
+    "POI Engagement": "The speaker accepted and responded to one relevant POI during the speech, meeting the criteria for basic engagement.",
+    "Delivery & Style": "The speech was highly structured and logical, suggesting clarity and adequate pacing. Assuming audible presentation, this is a competent score, though vocal dynamism is unknown.",
+    "Argument Completeness": "Three well-developed arguments were presented, featuring strong claims, detailed mechanistic reasoning, relevant examples (Insulin, EpiPen), and clearly articulated impacts on accessibility and niche drug development.",
+    "Theory Application": "Clear application of multiple techniques, including strategic framing, detailed mechanistic reasoning explaining market failures, stakeholder analysis, and proactive counter set-ups were used effectively.",
+    "Rebuttal Effectiveness": "As the first speaker (Prop 1), there were no prior opponent arguments to rebut; thus, this is not applicable.",
+    "Teamwork & Extension": "As the first speaker (Prop 1), there were no prior teammate speeches to extend or support; thus, this is not applicable.",
+    "Feedback Implementation": "The highly structured, logical, and timely presentation suggests that the speaker has successfully implemented basic feedback regarding structure and organization."
+  },
+  "average_score": 3.7,
+  "total_scored_rubrics": 6
+}

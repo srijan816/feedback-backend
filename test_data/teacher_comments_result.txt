@@ -1,0 +1,70 @@
+[NOTE: This is an 8-minute speech.]
+
+---
+
+### **SECTION B: HOOK & SIGNPOSTING**
+
+Excellent hook. You immediately frame Big Pharma as a villainous actor, which provides a strong, clear problem statement for your case. This is much more impactful than a generic opening.
+
+Good job signposting your three arguments after the model. This gives the judge a clear roadmap for your speech.
+
+While you managed your time well, be mindful that three substantive points can be ambitious for an 8-minute speech. It sometimes forces you to sacrifice depth for breadth. For this speech, you balanced it well, but it's a risk to keep in mind.
+
+---
+
+### **SECTION C: POSITION-SPECIFIC STRATEGIC FEEDBACK**
+
+On your setup/model:
+Well done providing a three-part model on buy-backs, staffing, and transparency. This is a crucial foundation for a policy debate.
+
+To make your model even more robust and pre-empt Opposition attacks, we can add more detail on the governance and funding mechanisms.
+Propose a clear governance structure for this nationalised entity, such as an independent board insulated from short-term political pressures, similar to a central bank. This helps counter the argument that research priorities will simply shift with every election cycle.
+
+Clarify the funding mechanism beyond just "tax base." Point out that the entity would be funded through a combination of direct government appropriation (like NASA or the NIH) and revenue from selling high-volume, profitable drugs at reasonable prices. This directly answers the question of how it sustains expensive, long-term R&D.
+
+---
+
+### **SECTION D: ARGUMENT ANALYSIS**
+
+**On your first argument about Accessibility:**
+This was an excellent first argument, deeply proven with multiple, distinct mechanisms. The characterisation of the pharmaceutical market as a natural oligopoly was particularly strong and well-explained.
+
+The main gap is not fully mechanizing the link between voter accountability and government action. You assert governments care about perception, but we need to show *why* that leads to better outcomes.
+Establish that a government's primary incentive is re-election, which is directly tied to public well-being and approval. Point out that media stories of citizens dying because they can't afford medicine are politically toxic and can cost an incumbent party an election. Therefore, a nationalised company is structurally forced to prioritise access and affordability to maintain political stability, a pressure that a private CEO, accountable only to shareholders, does not face.
+
+To strengthen your example on insulin prices, add the mechanism. Show how in Canada, the government's role as a single-payer negotiator or price regulator forces costs down. This proves that state intervention is the key variable for affordability, and your model is the ultimate form of that intervention.
+
+**On your second argument about Niche Drugs:**
+Good clarity on the profit motive failing to serve smaller or poorer patient populations. The distinction between economic power and political power was a sharp and useful framing.
+
+The analysis could be deepened by explaining *how* the political power of small groups gets translated into R&D funding, as Opp will claim they are too small to matter.
+Show how the political power of these groups is amplified through advocacy, media coverage, and forming coalitions with broader patient groups. Explain that while a specific disease might be rare, the principle of providing care for the vulnerable has widespread public sympathy that politicians must respond to. This emotional appeal gives these groups disproportionate political influence compared to their small numbers.
+
+You mention the government can cross-subsidise. This is a critical point. Emphasise it more. Explain that a nationalised entity operates a portfolio of drugs. Profits from a widely-used cholesterol drug can be explicitly earmarked to fund R&D for a rare childhood cancer. This diversification of risk is impossible for a private startup focused on a single disease area.
+
+**On your third argument about Misinformation:**
+This was another strong argument that correctly identified perverse incentives. The examples of managing symptoms over cures (insulin) and over-prescription (Purdue Pharma) were powerful.
+
+To make this argument strategically stronger, we need to pre-emptively dismantle the most likely Opposition response: that regulation is a sufficient check on corporate malpractice.
+Establish that regulatory bodies like the FDA are systematically outmatched and outmanoeuvred by the pharmaceutical industry. Point out that these agencies are often underfunded and face intense lobbying pressure, and their expert staff are often recruited from the very industry they are meant to regulate. Use your Purdue Pharma example to prove that the profit motive is powerful enough to corrupt the system and bypass existing safeguards, meaning simple regulation is not enough.
+
+---
+
+### **SECTION E: REBUTTAL & CLASH**
+
+As the first speaker, you have no burden of rebuttal. Your role is to build a strong, clear case, which you did effectively. Your arguments were framed in a way that creates clear points of clash for the rest of the debate, particularly on the questions of incentives (profit vs. public good) and efficiency.
+
+---
+
+### **SECTION F: ARGUMENT RECOMMENDATIONS**
+
+We're missing a potential argument on the positive externalities of public-led research, specifically regarding international collaboration and data sharing.
+A powerful perspective you could have added is that a nationalised body can engage in open-source research and collaborate directly with other nations' public health systems. We could have argued that this bypasses the secretive, competitive nature of private R&D and intellectual property barriers. This allows for faster, more efficient development of treatments for global pandemics or neglected tropical diseases, creating a global public good that the private sector is structurally incapable of producing.
+
+---
+
+### **SECTION G: CLOSING**
+
+Your response to the POI was solid. You directly addressed both parts of the question, providing answers for both short-term and long-term research incentives.
+
+Speaking time: 08:07 - Perfect! Excellent time management.

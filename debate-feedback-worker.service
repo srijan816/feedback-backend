@@ -1,0 +1,40 @@
+[Unit]
+Description=Debate Feedback Background Worker
+Documentation=https://github.com/debate-feedback/backend
+After=network.target postgresql.service redis.service debate-feedback-backend.service
+Wants=postgresql.service redis.service
+Requires=debate-feedback-backend.service
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/apps/feedback-backend
+Environment="NODE_ENV=production"
+Environment="PATH=/home/ubuntu/.nvm/versions/node/v22.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Load environment variables from .env file
+EnvironmentFile=/home/ubuntu/apps/feedback-backend/.env
+
+# Start the worker process
+ExecStart=/home/ubuntu/.nvm/versions/node/v22.19.0/bin/npm run worker
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=debate-worker
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,316 @@
+[
+  {
+    "courseCode": "02IPDDB2502",
+    "dayName": "Thursday",
+    "dayIndex": 4,
+    "time": "16:30:00",
+    "students": [
+      {
+        "id": "JANSEL2401",
+        "name": "Selena Jang",
+        "grade": "Grade 4"
+      },
+      {
+        "id": "YEAMA2401",
+        "name": "Amanda Ye",
+        "grade": "Grade 4"
+      },
+      {
+        "id": "TSESOP2201",
+        "name": "Sophie Wai Ching Tse",
+        "grade": "Grade 4"
+      },
+      {
+        "id": "KWAOLI2301",
+        "name": "Olivia Kwan",
+        "grade": "Grade 4"
+      },
+      {
+        "id": "LIGRA2501",
+        "name": "Grace Li",
+        "grade": "Grade 4"
+      }
+    ]
+  },
+  {
+    "courseCode": "02IPDEC2504",
+    "dayName": "Friday",
+    "dayIndex": 5,
+    "time": "18:00:00",
+    "students": [
+      {
+        "id": "TAILUK2401",
+        "name": "Luke Tai",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "ZHAZAC2401",
+        "name": "Zachary Zhang",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "CHUAMA2401",
+        "name": "Amanda Chu",
+        "grade": "Grade 5"
+      },
+      {
+        "id": "WONMEG2501",
+        "name": "Megan Wong",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "HUIJAI2501",
+        "name": "Jaime Hui",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "LAMELL2401",
+        "name": "Ella Yan Laam Lam",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "NGROS2501",
+        "name": "Rosabel Ng",
+        "grade": "Grade 5"
+      },
+      {
+        "id": "MURAKI2501",
+        "name": "Akira Lilia Murata Kail",
+        "grade": "Grade 5"
+      }
+    ]
+  },
+  {
+    "courseCode": "02IPDEC2505",
+    "dayName": "Saturday",
+    "dayIndex": 6,
+    "time": "11:00:00",
+    "students": [
+      {
+        "id": "WOOABI2301",
+        "name": "Abigail Woo",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "WONALF2401",
+        "name": "Alfred Ching Hang Wong",
+        "grade": "Grade 5"
+      },
+      {
+        "id": "YUNEMM2401",
+        "name": "Emma Yung",
+        "grade": "Grade 5"
+      },
+      {
+        "id": "CHUISA2101",
+        "name": "Isabella Chung",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "LAMELL2201",
+        "name": "Ella Lam",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "CHACHL2502",
+        "name": "Chloe Wai Ting Chan",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "RABCHA2401",
+        "name": "Charlotte Rabiller",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "RABLOU2501",
+        "name": "Louis Rabiller",
+        "grade": "Grade 5"
+      }
+    ]
+  },
+  {
+    "courseCode": "02IPDDC2502",
+    "dayName": "Friday",
+    "dayIndex": 5,
+    "time": "16:30:00",
+    "students": [
+      {
+        "id": "CHECAR2401",
+        "name": "Carina Chen",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "JINJAM2201",
+        "name": "James Jin",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "XIACHA2401",
+        "name": "Charlotte Xia",
+        "grade": "Grade 6"
+      }
+    ]
+  },
+  {
+    "courseCode": "02IPDDC2503",
+    "dayName": "Saturday",
+    "dayIndex": 6,
+    "time": "13:30:00",
+    "students": [
+      {
+        "id": "LAIKAY2201",
+        "name": "Kaye Lai",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "LEEMAR2301",
+        "name": "Marcus Lee",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "LIULUC2501",
+        "name": "Lucas Liu",
+        "grade": "Grade 6"
+      },
+      {
+        "id": "SHAKYL2501",
+        "name": "Kyle Shah",
+        "grade": "Grade 6"
+      }
+    ]
+  },
+  {
+    "courseCode": "01IPDED2504",
+    "dayName": "Saturday",
+    "dayIndex": 6,
+    "time": "09:30:00",
+    "students": [
+      {
+        "id": "CHAANN2201",
+        "name": "Annette Yuet Yann Chan",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "CHEAID2201",
+        "name": "Aiden Cheng",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "TANKIN2001",
+        "name": "Kingston Yu Ho Tang",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "TANINE2101",
+        "name": "Inez Tang",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "LAMAST2201",
+        "name": "Astrea Lam",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "NGVIC2301",
+        "name": "Victoria Ng",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "LAUAID2501",
+        "name": "Aiden Lau",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "LAMALE2201",
+        "name": "Alexia Lam",
+        "grade": "Grade 7"
+      }
+    ]
+  },
+  {
+    "courseCode": "01IPDED2506",
+    "dayName": "Saturday",
+    "dayIndex": 6,
+    "time": "15:00:00",
+    "students": [
+      {
+        "id": "CHEHEN2401",
+        "name": "Henry Cheng",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "KWOKRI2001",
+        "name": "Kris Kwong",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "POOVAL2402",
+        "name": "Valerie Sum Yin Poon",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "LIEMM2501",
+        "name": "Emmitt Li",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "KOOELV2501",
+        "name": "Elvis Koon",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "HONTHO2501",
+        "name": "Thomas Hong",
+        "grade": "Grade 9"
+      },
+      {
+        "id": "CHELEN2501",
+        "name": "Lennis Cheng",
+        "grade": "Grade 8"
+      }
+    ]
+  },
+  {
+    "courseCode": "01IPDED2507",
+    "dayName": "Saturday",
+    "dayIndex": 6,
+    "time": "16:45:00",
+    "students": [
+      {
+        "id": "LIKAY2501",
+        "name": "Kay Li Wan",
+        "grade": "Grade 9"
+      },
+      {
+        "id": "NGATH2001",
+        "name": "Athan Tsun Hin Ng",
+        "grade": "Grade 9"
+      },
+      {
+        "id": "PORHY1701",
+        "name": "Rhys Po",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "LIUAND2301",
+        "name": "Andrew Liu",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "CHAANN2503",
+        "name": "Annabel Chang",
+        "grade": "Grade 8"
+      },
+      {
+        "id": "HUINIC2501",
+        "name": "Nicolas Hui",
+        "grade": "Grade 7"
+      },
+      {
+        "id": "YEOAID2401",
+        "name": "Aidan Yeo",
+        "grade": "Grade 7"
+      }
+    ]
+  }
+]

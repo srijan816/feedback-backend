@@ -1,0 +1,75 @@
+{
+  "rubric_scores": {
+    "scores": {
+      "Time Management": 2,
+      "POI Engagement": 3,
+      "Delivery & Style": 3,
+      "Argument Completeness": 4,
+      "Theory Application": 4,
+      "Rebuttal Effectiveness": "NA",
+      "Teamwork & Extension": "NA",
+      "Feedback Implementation": 3
+    },
+    "justifications": {
+      "Time Management": "The actual speaking time of 10:18 is significantly over the typical 7-8 minute limit for a competitive speech, suggesting issues with structure or excessive detail.",
+      "POI Engagement": "Accepted one relevant POI after the second argument and acknowledged taking POIs in the chat, fulfilling basic engagement requirements.",
+      "Delivery & Style": "The speech was clearly signposted, but there was structural repetition/reiteration of core points (the profit mechanism) around the 8-minute mark, dragging down pacing.",
+      "Argument Completeness": "The arguments were well-developed with clear claims, extensive reasoning, and strong real-world examples (insulin, EpiPen, opioids).",
+      "Theory Application": "Strong use of structural characterization, specifically contrasting the profit motives of private oligopolies against the political incentives of a nationalized entity.",
+      "Rebuttal Effectiveness": "NA",
+      "Teamwork & Extension": "NA",
+      "Feedback Implementation": "Assumed competent application of general advice, as no prior feedback context was provided."
+    },
+    "average_score": 3.2,
+    "total_scored_rubrics": 6
+  },
+  "strategic_overview": {
+    "hook_and_signposting": "The hook immediately established the problem by citing 'Big Pharma’s tyranny' against the sick and dying, setting a strong moral tone. Excellent signposting clearly mapped out the three main arguments immediately following the model.",
+    "strategic_assessment": "The case foundation was structurally sound, relying on a strong characterization of private pharmaceutical companies as entrenched, anti-competitive oligopolies motivated purely by profit. The speaker successfully deployed three comprehensive arguments. However, the core mechanism relating to price gouging and government funding was reiterated unnecessarily between 5:35 and 8:53, causing the speech to lose momentum and run excessively long.",
+    "missing_arguments": "A major ignored perspective is the global health impact. Nationalization in a major economy would enable open-source R&D and collaboration, fundamentally altering how essential medicines (like vaccines) are distributed internationally, bypassing competitive IP barriers that currently restrict access for developing nations."
+  },
+  "playable_moments": [
+    {
+      "chunk_id": 2,
+      "category": "excellent",
+      "severity": "praise",
+      "issue": "Strong counter-characterization that immediately preempts opposition attacks on talent acquisition.",
+      "recommendation": "Listen to this moment (02:01-02:36). The analogy linking nationalized pharma to successful government agencies like NASA, attracting the 'brightest scientists,' is highly effective. Continue using high-profile, non-partisan examples to validate governmental capability."
+    },
+    {
+      "chunk_id": 5,
+      "category": "gap",
+      "severity": "critical",
+      "issue": "You assert that a national monopoly shares technology while private oligopolies do not, but you miss the structural mechanism explaining *why* this sharing occurs.",
+      "recommendation": "Explain the zero-internal-IP mandate. State that because the nationalized entity has no internal IP barriers or competitive incentive structures, all R&D departments are structurally mandated to pool knowledge and resources, maximizing efficiency for the singular goal of public health, which private firms cannot replicate due to conflicting shareholder duties."
+    },
+    {
+      "chunk_id": 7,
+      "category": "weak",
+      "severity": "critical",
+      "issue": "You assert that governments are held accountable by voters and care about perception, but this reasoning is weak without linking it directly to political survival.",
+      "recommendation": "Establish that a government's primary incentive is re-election, which is directly tied to public well-being and approval. Point out that media stories of citizens dying because they can't afford medicine are politically toxic and can cost an incumbent party an election. Therefore, a nationalized company is structurally forced to prioritize access and affordability to maintain political stability—a pressure that a private CEO, accountable only to shareholders, does not face."
+    },
+    {
+      "chunk_id": 10,
+      "category": "unclear",
+      "severity": "critical",
+      "issue": "The content in this chunk (08:18-08:53) largely repeats the financial reasoning and impact discussed extensively in CHUNK_7 and CHUNK_8. This structural repetition costs you valuable time.",
+      "recommendation": "Listen back to this section. If you find yourself restating core mechanisms (tax base funding vs. profit motive), stop and transition. Once an argument is fully developed (as it was in CHUNK_8), you should move directly to the next point (niche drugs) to improve time management."
+    },
+    {
+      "chunk_id": 13,
+      "category": "gap",
+      "severity": "critical",
+      "issue": "You mention the crucial mechanism of cross-subsidization (using common drug profits to fund niche R&D) but this critical point is underdeveloped and rushed.",
+      "recommendation": "Emphasize this more strongly. Explain that a nationalized entity operates a portfolio of drugs—profits from a widely-used drug (e.g., cholesterol medicine) can be explicitly earmarked to fund R&D for a rare, unprofitable illness. This diversification of financial risk is impossible for a private company focused on a small market, which must price that one drug astronomically high to recoup R&D costs."
+    },
+    {
+      "chunk_id": 16,
+      "category": "excellent",
+      "severity": "praise",
+      "issue": "Excellent use of concrete examples with Purdue Pharma and the opioid epidemic. The specificity makes this argument viscerally convincing.",
+      "recommendation": "Continue using specific, named examples like this throughout your speeches. It transforms abstract harm into real-world consequence and makes your arguments far more memorable and persuasive."
+    }
+  ]
+}
