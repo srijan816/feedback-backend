@@ -95,9 +95,10 @@ async function processGoogleDocsJob(job: Job<GoogleDocsJobData>) {
  * Register Google Docs worker
  */
 export function registerGoogleDocsWorker() {
-  googleDocsQueue.process(async (job) => {
+  // Process 5 jobs concurrently (Google Docs API has rate limits)
+  googleDocsQueue.process(5, async (job) => {
     return await processGoogleDocsJob(job);
   });
 
-  logger.info('Google Docs worker registered');
+  logger.info('Google Docs worker registered with concurrency: 5');
 }

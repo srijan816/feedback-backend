@@ -27,6 +27,7 @@ import feedbackViewerRoutes from './routes/feedbackViewer.js';
 import testFeedbackRoutes from './routes/testFeedback.js';
 import testFeedbackV2Routes from './routes/testFeedbackV2.js';
 import storageRoutes from './routes/storage.js';
+import webhookRoutes from './routes/webhooks.js';
 
 const app: Application = express();
 
@@ -131,6 +132,8 @@ app.use('/upload-debate', uploadWebRoutes); // Web UI for debate upload
 app.use('/upload', uploadLimiter, uploadRoutes); // Upload endpoint with stricter rate limiting
 logger.info('Upload route registered at /upload');
 app.use('/api/health', healthRoutes);
+app.use('/webhooks', webhookRoutes); // Webhook endpoints for external services
+logger.info('Webhook route registered at /webhooks');
 app.use('/feedback', feedbackViewerRoutes); // Feedback HTML viewer
 logger.info('Feedback viewer route registered at /feedback');
 app.use('/', testFeedbackRoutes); // Test feedback V1 viewer

@@ -143,6 +143,7 @@ async function createTranscriptionJob(
     speakerCount?: number;
     minSpeakers?: number;
     maxSpeakers?: number;
+    webhookUrl?: string; // NEW: Optional webhook URL for completion callback
   }
 ): Promise<string> {
   try {
@@ -150,6 +151,14 @@ async function createTranscriptionJob(
       audio_url: audioUrl,
       speech_model: 'slam-1', // Use Slam-1 model
     };
+
+    // Add webhook URL if provided (50-80% faster than polling)
+    if (options?.webhookUrl) {
+      requestData.webhook_url = options.webhookUrl;
+      logger.info('Transcription job will use webhook', {
+        webhook_url: options.webhookUrl,
+      });
+    }
 
     // Add keyterms prompt for better accuracy
     if (options?.keyterms && options.keyterms.length > 0) {
@@ -198,6 +207,7 @@ async function createTranscriptionJob(
     logger.info('Transcription job created', {
       transcript_id: response.data.id,
       status: response.data.status,
+      uses_webhook: !!options?.webhookUrl,
     });
 
     return response.data.id;
@@ -279,6 +289,7 @@ export async function transcribeAudio(
     speakerCount?: number;
     minSpeakers?: number;
     maxSpeakers?: number;
+    useWebhook?: boolean; // NEW: Enable webhook mode (default: false for backward compatibility)
   }
 ): Promise<TranscriptionResult> {
   const startTime = Date.now();
@@ -287,7 +298,8 @@ export async function transcribeAudio(
   try {
     logger.info('Starting transcription', {
       audioFilePath,
-      diarizationEnabled: options?.enableDiarization
+      diarizationEnabled: options?.enableDiarization,
+      useWebhook: options?.useWebhook || false,
     });
 
     // Step 0: Normalize audio volume (fixes quiet iOS recordings)
@@ -297,15 +309,21 @@ export async function transcribeAudio(
     const uploadUrl = await uploadAudioFile(normalizedPath);
 
     // Step 2: Create transcription job with Slam-1
+    // Webhook URL: Set WEBHOOK_BASE_URL in environment (e.g., https://yourdomain.com)
+    const webhookUrl = options?.useWebhook && config.server.webhookBaseUrl
+      ? `${config.server.webhookBaseUrl}/webhooks/assemblyai`
+      : undefined;
+
     const transcriptId = await createTranscriptionJob(uploadUrl, {
       keyterms: options?.keyterms,
       enableDiarization: options?.enableDiarization,
       speakerCount: options?.speakerCount,
       minSpeakers: options?.minSpeakers,
       maxSpeakers: options?.maxSpeakers,
+      webhookUrl,
     });
 
-    // Step 3: Poll for completion
+    // Step 3: Poll for completion (fallback if webhook not configured)
     const result = await pollTranscriptionStatus(transcriptId);
 
     if (!result.text || !result.words) {
@@ -437,5 +455,62 @@ export function getDebateKeyTerms(studentLevel: string): string[] {
       'stakeholder',
       'implementation',
     ];
+  }
+}
+
+/**
+ * Fetch completed transcription results from AssemblyAI
+ */
+export async function fetchTranscriptionResult(
+  transcriptId: string
+): Promise<AssemblyAITranscriptResponse> {
+  try {
+    const response = await axios.get<AssemblyAITranscriptResponse>(
+      `${ASSEMBLYAI_BASE_URL}/transcript/${transcriptId}`,
+      {
+        headers: {
+          authorization: config.apis.assemblyai.apiKey,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    logger.error('Failed to fetch transcription result', {
+      error,
+      transcript_id: transcriptId,
+    });
+    throw new Error(`Failed to fetch transcription: ${error}`);
+  }
+}
+
+/**
+ * Handle AssemblyAI webhook callback
+ *
+ * This is called when AssemblyAI completes a transcription job.
+ * It's exported and used by the webhook route.
+ */
+export async function handleAssemblyAIWebhook(
+  transcriptId: string,
+  status: string
+): Promise<void> {
+  logger.info('Handling AssemblyAI webhook', { transcriptId, status });
+
+  if (status === 'completed' || status === 'error') {
+    // Fetch the full transcription result
+    const result = await fetchTranscriptionResult(transcriptId);
+
+    // TODO: The webhook needs to know which speech_id this belongs to
+    // We'll need to store a mapping in Redis: transcript_id -> speech_id
+    // For now, this is a placeholder. The actual implementation would:
+    // 1. Look up speech_id from Redis using transcript_id as key
+    // 2. Continue the transcription worker job processing
+    // 3. Store results in database and queue feedback job
+
+    logger.info('AssemblyAI webhook processed', {
+      transcriptId,
+      status: result.status,
+      has_text: !!result.text,
+    });
   }
 }

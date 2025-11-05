@@ -142,9 +142,10 @@ async function processFeedbackJob(job: Job<FeedbackJobData>) {
  * Register feedback worker
  */
 export function registerFeedbackWorker() {
-  feedbackQueue.process(async (job) => {
+  // Process 10 jobs concurrently for maximum throughput
+  feedbackQueue.process(10, async (job) => {
     return await processFeedbackJob(job);
   });
 
-  logger.info('Feedback worker registered');
+  logger.info('Feedback worker registered with concurrency: 10');
 }

@@ -158,9 +158,10 @@ async function processTranscriptionJob(job: Job<TranscriptionJobData>) {
  * Register transcription worker
  */
 export function registerTranscriptionWorker() {
-  transcriptionQueue.process(async (job) => {
+  // Process 10 jobs concurrently for maximum throughput
+  transcriptionQueue.process(10, async (job) => {
     return await processTranscriptionJob(job);
   });
 
-  logger.info('Transcription worker registered');
+  logger.info('Transcription worker registered with concurrency: 10');
 }

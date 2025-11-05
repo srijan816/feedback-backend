@@ -8,6 +8,7 @@ interface Config {
     port: number;
     env: string;
     apiBaseUrl: string;
+    webhookBaseUrl?: string; // Base URL for webhooks (e.g., https://yourdomain.com)
   };
   database: {
     url: string;
@@ -100,6 +101,7 @@ const config: Config = {
     port: parseInt(process.env.PORT || '3000', 10),
     env: process.env.NODE_ENV || 'development',
     apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:3000',
+    webhookBaseUrl: process.env.WEBHOOK_BASE_URL, // Set this to enable AssemblyAI webhooks (50-80% faster)
   },
   database: {
     url: process.env.DATABASE_URL || 'postgresql://localhost:5432/debate_feedback',

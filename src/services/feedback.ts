@@ -2,6 +2,12 @@ import { query } from '../config/database.js';
 import { callLLM } from './llm.js';
 import logger from '../utils/logger.js';
 import { Rubric, StudentLevel } from '../types/index.js';
+import {
+  getFromCache,
+  setInCache,
+  CacheKeys,
+  CACHE_TTL,
+} from './cache.js';
 
 export interface FeedbackInput {
   speech_id: string;
@@ -95,9 +101,18 @@ async function getPriorSpeeches(
 }
 
 /**
- * Get active rubrics for student level
+ * Get active rubrics for student level (with Redis caching)
  */
 async function getRubrics(studentLevel: StudentLevel): Promise<Rubric[]> {
+  const cacheKey = CacheKeys.rubrics(studentLevel);
+
+  // Try to get from cache first
+  const cached = await getFromCache<Rubric[]>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  // Cache miss - query database
   const result = await query<Rubric>(
     `SELECT * FROM rubrics
      WHERE (student_level = $1 OR student_level = 'both')
@@ -106,13 +121,25 @@ async function getRubrics(studentLevel: StudentLevel): Promise<Rubric[]> {
     [studentLevel]
   );
 
+  // Store in cache for 1 hour
+  await setInCache(cacheKey, result.rows, CACHE_TTL.RUBRICS);
+
   return result.rows;
 }
 
 /**
- * Get active prompt template
+ * Get active prompt template (with Redis caching)
  */
 async function getPromptTemplate(studentLevel: StudentLevel): Promise<string> {
+  const cacheKey = CacheKeys.prompt(studentLevel);
+
+  // Try to get from cache first
+  const cached = await getFromCache<string>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  // Cache miss - query database
   const result = await query(
     `SELECT prompt_text FROM prompt_templates
      WHERE (student_level = $1 OR student_level = 'both')
@@ -123,12 +150,18 @@ async function getPromptTemplate(studentLevel: StudentLevel): Promise<string> {
     [studentLevel]
   );
 
+  let promptText: string;
   if (result.rows.length === 0) {
     // Fallback to default prompt if none exists
-    return getDefaultPromptTemplate(studentLevel);
+    promptText = getDefaultPromptTemplate(studentLevel);
+  } else {
+    promptText = result.rows[0].prompt_text;
   }
 
-  return result.rows[0].prompt_text;
+  // Store in cache for 1 hour
+  await setInCache(cacheKey, promptText, CACHE_TTL.PROMPTS);
+
+  return promptText;
 }
 
 /**
@@ -229,7 +262,10 @@ IMPORTANT:
 /**
  * Build the complete prompt with all context
  */
-async function buildFeedbackPrompt(input: FeedbackInput): Promise<string> {
+async function buildFeedbackPrompt(
+  input: FeedbackInput,
+  currentSpeechTime: Date
+): Promise<string> {
   // Get template
   const template = await getPromptTemplate(input.student_level);
 
@@ -242,13 +278,7 @@ async function buildFeedbackPrompt(input: FeedbackInput): Promise<string> {
     )
     .join('\n');
 
-  // Get prior speeches for context
-  const speechResult = await query(
-    'SELECT created_at FROM speeches WHERE id = $1',
-    [input.speech_id]
-  );
-  const currentSpeechTime = speechResult.rows[0]?.created_at;
-
+  // Get prior speeches for context (reuse currentSpeechTime parameter)
   const priorSpeeches = await getPriorSpeeches(input.debate_id, currentSpeechTime);
   const priorSpeechesText =
     priorSpeeches.length > 0
@@ -328,17 +358,19 @@ export async function generateFeedback(
       student_level: input.student_level,
     });
 
-    // Build prompt with all context
-    const prompt = await buildFeedbackPrompt(input);
-
-    // Check if we should use contextual model (Pro) for speeches with prior context
+    // Query once for speech timestamp (eliminates duplicate query)
     const speechResult = await query(
       'SELECT created_at FROM speeches WHERE id = $1',
       [input.speech_id]
     );
     const currentSpeechTime = speechResult.rows[0]?.created_at;
+
+    // Get prior speeches to determine if we should use contextual model
     const priorSpeeches = await getPriorSpeeches(input.debate_id, currentSpeechTime);
     const useContextual = priorSpeeches.length > 0;
+
+    // Build prompt with all context (passing currentSpeechTime to avoid re-query)
+    const prompt = await buildFeedbackPrompt(input, currentSpeechTime);
 
     // Call LLM
     const llmResponse = await callLLM(prompt, llmProvider, useContextual);
