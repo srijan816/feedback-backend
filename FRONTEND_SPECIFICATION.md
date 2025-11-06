@@ -199,7 +199,12 @@ Response: {
   students: [{ id, name, level }],
   suggested_motion: string,
   format: string,
-  speech_time: number
+  speech_time: number,
+  alternatives: [{
+    class_id: string,
+    start_time: string,
+    startDateTime: string // ISO8601, Hong Kong timezone
+  }]
 }
 ```
 

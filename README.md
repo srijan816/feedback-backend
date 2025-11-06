@@ -189,6 +189,8 @@ POST   /api/schedule             # Create schedule (admin)
 PUT    /api/schedule/:id        # Update schedule (admin)
 ```
 
+`GET /api/schedule/current` now returns each alternative class with both `start_time` (HH:mm) and `startDateTime` (ISO8601, Hong Kong timezone) so clients can differentiate identical start times.
+
 ### Prompts
 
 ```

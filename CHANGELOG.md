@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2025-11-06
+
+### Added
+- `GET /api/schedule/current` now returns `startDateTime` (ISO8601, Hong Kong timezone) for each alternative class to disambiguate identical start times on the frontend.
+
+### Changed
+- iOS frontend rebuilt around an `AppCoordinator` with SwiftData persistence, updated authentication/timer/feedback flows, and supporting services for audio capture and uploads.
+
 ## [1.1.0] - 2025-11-05
 
 ### 🚀 Performance Optimizations - 10-13x Faster

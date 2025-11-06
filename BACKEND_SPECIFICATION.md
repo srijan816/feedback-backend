@@ -320,9 +320,18 @@ CREATE INDEX idx_prompts_active ON prompt_templates(student_level, template_type
   ],
   "suggested_motion": "This house would ban social media",
   "format": "WSDC",
-  "speech_time": 480
+  "speech_time": 480,
+  "alternatives": [
+    {
+      "class_id": "debate-102",
+      "start_time": "16:30",
+      "startDateTime": "2025-11-06T08:30:00.000Z"
+    }
+  ]
 }
 ```
+
+> **Note:** Alternative classes now include a `startDateTime` field (ISO8601, Hong Kong timezone) so the frontend can schedule the exact session when multiple classes share the same start time.
 
 #### `POST /api/schedule`
 **Description**: Create/update schedule (admin only)
