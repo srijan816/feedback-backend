@@ -44,6 +44,40 @@ function minutesToTimeString(minutes: number): string {
 }
 
 /**
+ * Calculate ISO8601 timestamp for a class based on day index and start time
+ * Uses Hong Kong timezone
+ */
+function calculateClassDateTime(baseDate: Date, dayIndex: number, startMinutes: number): string {
+  // Clone the base date
+  const classDate = new Date(baseDate);
+
+  // Calculate days until target day
+  const currentDay = classDate.getUTCDay();
+  let daysToAdd = dayIndex - currentDay;
+
+  // If the target day is today but the time has passed, or target day is before current day,
+  // move to next week
+  if (daysToAdd < 0) {
+    daysToAdd += 7;
+  } else if (daysToAdd === 0) {
+    // Same day - check if time has passed
+    const currentMinutes = classDate.getUTCHours() * 60 + classDate.getUTCMinutes();
+    if (currentMinutes >= startMinutes) {
+      daysToAdd = 7; // Move to next week
+    }
+  }
+
+  classDate.setUTCDate(classDate.getUTCDate() + daysToAdd);
+
+  // Set the time
+  const hours = Math.floor(startMinutes / 60);
+  const minutes = startMinutes % 60;
+  classDate.setUTCHours(hours, minutes, 0, 0);
+
+  return classDate.toISOString();
+}
+
+/**
  * GET /api/schedule/current
  * Get current class schedule based on teacher and time
  */
@@ -126,6 +160,7 @@ router.get(
         .map((course) => ({
           classId: course.classId,
           startTime: minutesToTimeString(course.startMinutes),
+          startDateTime: calculateClassDateTime(hkDate, course.dayIndex, course.startMinutes),
         }));
 
       res.json({
