@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Editor - Spreadsheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn.danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .info-bar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .info-item value {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .spreadsheet-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: auto;
+            max-height: calc(100vh - 250px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            min-width: 150px;
+            max-width: 400px;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th.unit-header {
+            background: #764ba2;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        td {
+            background: white;
+            cursor: text;
+            position: relative;
+        }
+
+        td.unit-cell {
+            background: #f8f9fa;
+            font-weight: 600;
+            text-align: center;
+            cursor: default;
+        }
+
+        td.editable {
+            cursor: text;
+        }
+
+        td.editable:hover {
+            background: #f8f9ff;
+        }
+
+        td.editable:focus {
+            outline: 2px solid #667eea;
+            background: #fff;
+        }
+
+        td.selected {
+            background: #e3f2fd !important;
+            outline: 2px solid #2196F3;
+        }
+
+        td.empty {
+            background: #fff9e6;
+            font-style: italic;
+            color: #999;
+        }
+
+        .add-row-btn, .add-col-btn {
+            background: #f0f0f0;
+            border: 1px dashed #999;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .add-row-btn:hover, .add-col-btn:hover {
+            background: #e0e0e0;
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .toolbar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 30px;
+            background: #ddd;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>📝 Motion Editor</h1>
+            <p style="opacity: 0.9; font-size: 14px; margin-top: 5px;">Edit debate motions directly in the spreadsheet</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn success" id="saveBtn" disabled>💾 Save Changes</button>
+            <button class="btn" id="exportBtn">📥 Export CSV</button>
+        </div>
+    </div>
+
+    <div class="info-bar">
+        <div class="info-item">
+            <label>Current Unit:</label>
+            <value id="currentUnit">-</value>
+        </div>
+        <div class="info-item">
+            <label>Total Units:</label>
+            <value id="totalUnits">-</value>
+        </div>
+        <div class="info-item">
+            <label>Categories:</label>
+            <value id="totalCategories">-</value>
+        </div>
+        <div class="info-item">
+            <label>Last Saved:</label>
+            <value id="lastSaved">Never</value>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="toolbar-section">
+            <button class="btn" id="addUnitBtn">➕ Add Unit</button>
+            <button class="btn" id="addCategoryBtn">➕ Add Category</button>
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="toolbar-section">
+            <button class="btn" id="undoBtn" disabled>↶ Undo</button>
+            <button class="btn" id="redoBtn" disabled>↷ Redo</button>
+        </div>
+        <div class="toolbar-divider"></div>
+        <span class="help-text">💡 Click to edit • Ctrl+C to copy • Ctrl+V to paste • Ctrl+Z to undo</span>
+    </div>
+
+    <div class="spreadsheet-container">
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            Loading motions...
+        </div>
+        <table id="spreadsheet" style="display: none;">
+            <thead id="tableHeader"></thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <script>
+        let motionsData = {};
+        let categories = [];
+        let units = [];
+        let hasChanges = false;
+        let selectedCell = null;
+        let undoStack = [];
+        let redoStack = [];
+        const MAX_UNDO = 50;
+
+        // Load motions data
+        async function loadMotions() {
+            try {
+                const response = await fetch('/api/motions/all');
+                if (!response.ok) throw new Error('Failed to load motions');
+
+                motionsData = await response.json();
+                processData();
+                renderSpreadsheet();
+                updateInfo();
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('spreadsheet').style.display = 'table';
+            } catch (error) {
+                showStatus('error', 'Error loading motions: ' + error.message);
+            }
+        }
+
+        // Process data to extract units and categories
+        function processData() {
+            units = Object.keys(motionsData).sort((a, b) => {
+                const [aMaj, aMin] = a.split('.').map(Number);
+                const [bMaj, bMin] = b.split('.').map(Number);
+                return aMaj === bMaj ? aMin - bMin : aMaj - bMaj;
+            });
+
+            const categorySet = new Set();
+            Object.values(motionsData).forEach(unitData => {
+                Object.keys(unitData).forEach(cat => categorySet.add(cat));
+            });
+
+            categories = Array.from(categorySet).sort();
+        }
+
+        // Render spreadsheet
+        function renderSpreadsheet() {
+            const table = document.getElementById('spreadsheet');
+            const thead = document.getElementById('tableHeader');
+            const tbody = document.getElementById('tableBody');
+
+            // Clear existing content
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            // Create header row
+            const headerRow = document.createElement('tr');
+            const unitHeaderCell = document.createElement('th');
+            unitHeaderCell.className = 'unit-header';
+            unitHeaderCell.textContent = 'Unit';
+            headerRow.appendChild(unitHeaderCell);
+
+            categories.forEach(category => {
+                const th = document.createElement('th');
+                th.textContent = category;
+                th.title = category;
+                headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+
+            // Create data rows
+            units.forEach(unit => {
+                const row = document.createElement('tr');
+
+                // Unit cell
+                const unitCell = document.createElement('td');
+                unitCell.className = 'unit-cell';
+                unitCell.textContent = unit;
+                row.appendChild(unitCell);
+
+                // Motion cells
+                categories.forEach(category => {
+                    const cell = document.createElement('td');
+                    cell.className = 'editable';
+                    cell.contentEditable = 'true';
+                    cell.dataset.unit = unit;
+                    cell.dataset.category = category;
+
+                    const motion = motionsData[unit]?.[category] || '';
+                    cell.textContent = motion;
+
+                    if (!motion) {
+                        cell.classList.add('empty');
+                        cell.textContent = '(empty)';
+                    }
+
+                    cell.addEventListener('focus', handleCellFocus);
+                    cell.addEventListener('blur', handleCellBlur);
+                    cell.addEventListener('input', handleCellInput);
+                    cell.addEventListener('keydown', handleCellKeydown);
+                    cell.addEventListener('paste', handleCellPaste);
+
+                    row.appendChild(cell);
+                });
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Handle cell focus
+        function handleCellFocus(e) {
+            selectedCell = e.target;
+            if (e.target.classList.contains('empty')) {
+                e.target.textContent = '';
+                e.target.classList.remove('empty');
+            }
+            e.target.classList.add('selected');
+        }
+
+        // Handle cell blur
+        function handleCellBlur(e) {
+            e.target.classList.remove('selected');
+            if (!e.target.textContent.trim()) {
+                e.target.classList.add('empty');
+                e.target.textContent = '(empty)';
+            }
+        }
+
+        // Handle cell input
+        function handleCellInput(e) {
+            if (!hasChanges) {
+                hasChanges = true;
+                document.getElementById('saveBtn').disabled = false;
+            }
+
+            const unit = e.target.dataset.unit;
+            const category = e.target.dataset.category;
+            const value = e.target.textContent;
+
+            if (!motionsData[unit]) motionsData[unit] = {};
+            motionsData[unit][category] = value;
+
+            saveToUndoStack();
+        }
+
+        // Handle keyboard shortcuts
+        function handleCellKeydown(e) {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'z') {
+                    e.preventDefault();
+                    undo();
+                } else if (e.key === 'y') {
+                    e.preventDefault();
+                    redo();
+                }
+            }
+        }
+
+        // Handle paste
+        function handleCellPaste(e) {
+            e.preventDefault();
+            const text = e.clipboardData.getData('text');
+
+            // Check if it's multi-cell paste (contains tabs or newlines)
+            if (text.includes('\t') || text.includes('\n')) {
+                pasteMultipleCells(e.target, text);
+            } else {
+                document.execCommand('insertText', false, text);
+            }
+        }
+
+        // Paste multiple cells
+        function pasteMultipleCells(startCell, text) {
+            const rows = text.split('\n').filter(r => r.trim());
+            const startRow = startCell.parentElement;
+            const startColIndex = Array.from(startRow.children).indexOf(startCell);
+
+            let currentRow = startRow;
+            rows.forEach((rowText, rowOffset) => {
+                if (!currentRow) return;
+
+                const values = rowText.split('\t');
+                const cells = Array.from(currentRow.children);
+
+                values.forEach((value, colOffset) => {
+                    const cellIndex = startColIndex + colOffset;
+                    if (cellIndex < cells.length && cellIndex > 0) {
+                        const cell = cells[cellIndex];
+                        if (cell.classList.contains('editable')) {
+                            cell.textContent = value;
+                            cell.classList.remove('empty');
+
+                            const unit = cell.dataset.unit;
+                            const category = cell.dataset.category;
+                            if (!motionsData[unit]) motionsData[unit] = {};
+                            motionsData[unit][category] = value;
+                        }
+                    }
+                });
+
+                currentRow = currentRow.nextElementSibling;
+            });
+
+            hasChanges = true;
+            document.getElementById('saveBtn').disabled = false;
+            saveToUndoStack();
+        }
+
+        // Save to undo stack
+        function saveToUndoStack() {
+            undoStack.push(JSON.stringify(motionsData));
+            if (undoStack.length > MAX_UNDO) undoStack.shift();
+            redoStack = [];
+            updateUndoButtons();
+        }
+
+        // Undo
+        function undo() {
+            if (undoStack.length === 0) return;
+            redoStack.push(JSON.stringify(motionsData));
+            motionsData = JSON.parse(undoStack.pop());
+            renderSpreadsheet();
+            hasChanges = true;
+            document.getElementById('saveBtn').disabled = false;
+            updateUndoButtons();
+        }
+
+        // Redo
+        function redo() {
+            if (redoStack.length === 0) return;
+            undoStack.push(JSON.stringify(motionsData));
+            motionsData = JSON.parse(redoStack.pop());
+            renderSpreadsheet();
+            hasChanges = true;
+            document.getElementById('saveBtn').disabled = false;
+            updateUndoButtons();
+        }
+
+        // Update undo/redo buttons
+        function updateUndoButtons() {
+            document.getElementById('undoBtn').disabled = undoStack.length === 0;
+            document.getElementById('redoBtn').disabled = redoStack.length === 0;
+        }
+
+        // Save changes
+        async function saveChanges() {
+            try {
+                document.getElementById('saveBtn').disabled = true;
+                document.getElementById('saveBtn').textContent = '💾 Saving...';
+
+                const response = await fetch('/api/motions/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(motionsData)
+                });
+
+                if (!response.ok) throw new Error('Failed to save');
+
+                hasChanges = false;
+                document.getElementById('lastSaved').textContent = new Date().toLocaleTimeString();
+                showStatus('success', '✓ Changes saved successfully!');
+                document.getElementById('saveBtn').textContent = '💾 Save Changes';
+            } catch (error) {
+                document.getElementById('saveBtn').disabled = false;
+                document.getElementById('saveBtn').textContent = '💾 Save Changes';
+                showStatus('error', '✗ Error saving: ' + error.message);
+            }
+        }
+
+        // Add new unit
+        function addUnit() {
+            const lastUnit = units[units.length - 1];
+            const [major, minor] = lastUnit.split('.').map(Number);
+            const newUnit = minor >= 5 ? `${major + 1}.1` : `${major}.${minor + 1}`;
+
+            motionsData[newUnit] = {};
+            processData();
+            renderSpreadsheet();
+            hasChanges = true;
+            document.getElementById('saveBtn').disabled = false;
+            updateInfo();
+            saveToUndoStack();
+        }
+
+        // Add new category
+        function addCategory() {
+            const name = prompt('Enter new category name (e.g., G7-12 PSD IV):');
+            if (!name || !name.trim()) return;
+
+            categories.push(name.trim());
+            categories.sort();
+            renderSpreadsheet();
+            hasChanges = true;
+            document.getElementById('saveBtn').disabled = false;
+            updateInfo();
+            saveToUndoStack();
+        }
+
+        // Export to CSV
+        function exportCSV() {
+            let csv = 'Unit,' + categories.join(',') + '\n';
+
+            units.forEach(unit => {
+                const row = [unit];
+                categories.forEach(category => {
+                    const motion = motionsData[unit]?.[category] || '';
+                    row.push('"' + motion.replace(/"/g, '""') + '"');
+                });
+                csv += row.join(',') + '\n';
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'motions_' + new Date().toISOString().split('T')[0] + '.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Update info bar
+        async function updateInfo() {
+            try {
+                const response = await fetch('/api/motions/current');
+                const data = await response.json();
+                document.getElementById('currentUnit').textContent = data.currentUnit;
+            } catch (error) {
+                document.getElementById('currentUnit').textContent = 'Error';
+            }
+
+            document.getElementById('totalUnits').textContent = units.length;
+            document.getElementById('totalCategories').textContent = categories.length;
+        }
+
+        // Show status message
+        function showStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.textContent = message;
+            status.style.display = 'block';
+
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 4000);
+        }
+
+        // Event listeners
+        document.getElementById('saveBtn').addEventListener('click', saveChanges);
+        document.getElementById('addUnitBtn').addEventListener('click', addUnit);
+        document.getElementById('addCategoryBtn').addEventListener('click', addCategory);
+        document.getElementById('exportBtn').addEventListener('click', exportCSV);
+        document.getElementById('undoBtn').addEventListener('click', undo);
+        document.getElementById('redoBtn').addEventListener('click', redo);
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            if (hasChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                if (hasChanges) saveChanges();
+            }
+        });
+
+        // Load on page load
+        loadMotions();
+    </script>
+</body>
+</html>

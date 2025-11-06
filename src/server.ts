@@ -138,6 +138,10 @@ app.use('/uploads/docx', express.static(path.join(process.cwd(), 'uploads', 'doc
 
 // Serve admin pages
 app.get('/admin/motions', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'admin', 'motions-editor.html'));
+});
+
+app.get('/admin/motions-upload', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'admin', 'motions.html'));
 });
 

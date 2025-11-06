@@ -1,79 +1,150 @@
 {
-  "G3-4 PSD I": {
-    "1.1": "Test Motion 1.1",
-    "1.2": "Test Motion 1.2",
-    "1.3": "Test Motion 1.3",
-    "2.1": "Test Motion 2.1",
-    "2.2": "Test Motion 2.2",
-    "2.3": "Test Motion 2.3",
-    "3.1": "Test Motion 3.1",
-    "3.2": "Test Motion 3.2",
-    "3.3": "Test Motion 3.3"
+  "1.1": {
+    "G3-4 PSD I": "That social media makes it easier to make friends.",
+    "G5-6 PSD I": "That friendship made online can be just as strong as one made in person.",
+    "G3-4 PSD II": "That family members and relatives are better friends than classmates.",
+    "G5-6 PSD II": "This House Would invest more effort to make and maintain friendships over academic achievements in school.",
+    "G7-9 PSD I": "THBT students should encourage their students to use AI for exams and homework.",
+    "G7-12 PSD II": "This House Believes That parents from low socioeconomic backgrounds should teach their children to believe happiness is the only thing in life that really matters",
+    "G7-12 PSD III": "This House Opposes the norm of significantly sacrificing other life goals to start a family ( e.g. friendships, careers parents)."
   },
-  "G3-4 PSD II": {
-    "1.1": "Motion 1.1",
-    "1.2": "Motion 1.2",
-    "1.3": "Motion 1.3",
-    "2.1": "Motion 2.1",
-    "2.2": "Motion 2.2",
-    "2.3": "Motion 2.3",
-    "3.1": "Motion 3.1",
-    "3.2": "Motion 3.2",
-    "3.3": "Motion 3.3"
+  "1.2": {
+    "G3-4 PSD I": "It is better to have many good friends over one best friend.",
+    "G5-6 PSD I": "That a single 'best friend' is an unhealthy concept.",
+    "G3-4 PSD II": "This house would prefer to have more friends and connections instead of more money",
+    "G5-6 PSD II": "This House Would prefer to be a famous person with no privacy over being an anonymous citizen.",
+    "G7-9 PSD I": "THBT schools should stop emphasising teamwork, and instead focus on teaching self-reliance to students.",
+    "G7-12 PSD II": "This House Believes That tiger parenting does more harm than good",
+    "G7-12 PSD III": "This House Would require parents to obtain eligibility licenses before having children."
   },
-  "G5-6 PSD I": {
-    "1.1": "Sample 1.1",
-    "1.2": "Sample 1.2",
-    "1.3": "Sample 1.3",
-    "2.1": "Sample 2.1",
-    "2.2": "Sample 2.2",
-    "2.3": "Sample 2.3",
-    "3.1": "Sample 3.1",
-    "3.2": "Sample 3.2",
-    "3.3": "Sample 3.3"
+  "1.3": {
+    "G3-4 PSD I": "That it is better to share a secret with your friend than your family.",
+    "G5-6 PSD I": "That parents should have a final say in who their kid's friends are.",
+    "G3-4 PSD II": "That parents should let their kids make their own mistakes instead of correcting them everytime",
+    "G5-6 PSD II": "This House would teach children to question their parents & teachers instead of following everything they say.",
+    "G7-9 PSD I": "THBT teachers should encourage students to pursue their passions, even if their passions may not be practical.",
+    "G7-12 PSD II": "This House Believes That important decisions about children’s health should be made by medical professionals and not by their parents",
+    "G7-12 PSD III": "This House Prefers a world where adult children take in their elderly parents rather than support them to live separately."
   },
-  "G5-6 PSD II": {
-    "1.1": "Demo 1.1",
-    "1.2": "Demo 1.2",
-    "1.3": "Demo 1.3",
-    "2.1": "Demo 2.1",
-    "2.2": "Demo 2.2",
-    "2.3": "Demo 2.3",
-    "3.1": "Demo 3.1",
-    "3.2": "Demo 3.2",
-    "3.3": "Demo 3.3"
+  "1.4": {
+    "G3-4 PSD I": "That you should not report your friends mistakes to the teachers.",
+    "G5-6 PSD I": "That it is acceptable to tell a lie to protect a friend's feelings.",
+    "G3-4 PSD II": "That we should try to be friends with people we have less in common with.",
+    "G5-6 PSD II": "This house would randomize the classroom seating arrangements every week",
+    "G7-9 PSD I": "THBT students should be encouraged to learn as many subjects as possible, rather than focusing on a few subjects.",
+    "G7-12 PSD II": "This House Would punish parents for the crimes committed by their underaged children",
+    "G7-12 PSD III": "This House Prefers a world of shame-based morality in Asian societies. In many Asian societies, shame-based morality is a cultural system where ethical behavior is largely governed by the fear of public embarrassment and the desire to maintain social and familial honor. Shame-based morality emphasizes external judgment - what others will think, how society will perceive you, and whether your actions bring honor or disgrace to your family or community."
   },
-  "G7-9 PSD I": {
-    "1.1": "Example 1.1",
-    "1.2": "Example 1.2",
-    "1.3": "Example 1.3",
-    "2.1": "Example 2.1",
-    "2.2": "Example 2.2",
-    "2.3": "Example 2.3",
-    "3.1": "Example 3.1",
-    "3.2": "Example 3.2",
-    "3.3": "Example 3.3"
+  "2.1": {
+    "G3-4 PSD I": "That children movies should not include any violence.",
+    "G5-6 PSD I": "That children's movies should be made to teach and not just entertain.",
+    "G3-4 PSD II": "That we should ban all cars.",
+    "G5-6 PSD II": "This house would require every new vehicle to be electric",
+    "G7-9 PSD I": "THBT Parenting-Monitoring apps should be banned.",
+    "G7-12 PSD II": "This House Would not punish the poor for stealing",
+    "G7-12 PSD III": "This House Would give women double votes in elections"
   },
-  "G7-12 PSD II": {
-    "1.1": "Debate 1.1",
-    "1.2": "Debate 1.2",
-    "1.3": "Debate 1.3",
-    "2.1": "Debate 2.1",
-    "2.2": "Debate 2.2",
-    "2.3": "Debate 2.3",
-    "3.1": "Debate 3.1",
-    "3.2": "Debate 3.2",
-    "3.3": "Debate 3.3"
+  "2.2": {
+    "G3-4 PSD I": "Every child should be required to read at least 10 books a year.",
+    "G5-6 PSD I": "That students should be encouraged to read more non-fiction than fiction.",
+    "G3-4 PSD II": "That people should buy more second-hand products",
+    "G5-6 PSD II": "This house would boycott fast fashion products (THR the rise of fast fashion)",
+    "G7-9 PSD I": "THBT parents should not hide negative information from their children. (E.g., negative information on a family member, the families financial situation, etc.)",
+    "G7-12 PSD II": "This House Would legalize recreational drugs",
+    "G7-12 PSD III": "This House Would require individuals to pass a general knowledge test in order to gain the right to vote"
   },
-  "G7-12 PSD III": {
-    "1.1": "Topic 1.1",
-    "1.2": "Topic 1.2",
-    "1.3": "Topic 1.3",
-    "2.1": "Topic 2.1",
-    "2.2": "Topic 2.2",
-    "2.3": "Topic 2.3",
-    "3.1": "Topic 3.1",
-    "3.2": "Topic 3.2",
-    "3.3": "Topic 3.3"
+  "2.3": {
+    "G3-4 PSD I": "That children's should not be allowed screentime.",
+    "G5-6 PSD I": "That children should not be allowed to view any online content other than educational.",
+    "G3-4 PSD II": "That each familiy should be allowed only one trash bag per week.",
+    "G5-6 PSD II": "This house would make environmentally intensive products expensive",
+    "G7-9 PSD I": "THW require all adults to take care of their elderly parents",
+    "G7-12 PSD II": "This House Would give prisoners the right to vote",
+    "G7-12 PSD III": "This House Would implement blind voting in national elections"
+  },
+  "2.4": {
+    "G3-4 PSD I": "That children's sports should not be competitive.",
+    "G5-6 PSD I": "That children should not be allowed to play online games.",
+    "G3-4 PSD II": "That households should have one \"no electricity\" day once a month",
+    "G5-6 PSD II": "This house would allow teenagers to vote on environmental policies",
+    "G7-9 PSD I": "THW hold parents responsible for crimes committed by their children.",
+    "G7-12 PSD II": "This House Would treat teenagers accused of heinous crimes as adults in legal proceedings",
+    "G7-12 PSD III": "This House Would make voting mandatory"
+  },
+  "3.1": {
+    "G3-4 PSD I": "Coaches should let everyone play, not just the best players.",
+    "G5-6 PSD I": "All teams should have both strong and less experienced players.",
+    "G3-4 PSD II": "That community service should be mandatory for all school students",
+    "G5-6 PSD II": "This house would require rich individuals to donate a fix percentage of their income to charity",
+    "G7-9 PSD I": "THBT all teenagers should be forced to participate in at least one competitive sport. (E.g., rugby, debate, badminton.)",
+    "G7-12 PSD II": "This House Believes That the education system should stream children according to their abilities and not only their age from a young age",
+    "G7-12 PSD III": "This House Believes That rehabilitation should be the only consideration in criminal sentencing"
+  },
+  "3.2": {
+    "G3-4 PSD I": "Schools should double the playing time to make students healthier.",
+    "G5-6 PSD I": "Students should be encouraged to play physically active sports rather than games that require little or no exercise (chess, board games)",
+    "G3-4 PSD II": "That people should donate to charities instead of giving gifts for birthdays and festivals.",
+    "G5-6 PSD II": "This house would award significant financial rewards to organ donors",
+    "G7-9 PSD I": "THBT responsibility for team failures should always be placed on the captain and or leader of a team.",
+    "G7-12 PSD II": "This House Believes That children should be taught to question authority from a young age",
+    "G7-12 PSD III": "This House Would introduce Good Samaritan Laws\nA Good Samaritan refers to someone who renders aid in an emergency to an injured person on a voluntary basis. A Good Samaritan statute is a law that requires a person to come to the aid of another who is exposed to grave physical harm. They will be subjected to appropriate legal sanctions if they violate this law."
+  },
+  "3.3": {
+    "G3-4 PSD I": "Everyone should get a trophy for participation.",
+    "G5-6 PSD I": "Competitions should not have winners and losers.",
+    "G3-4 PSD II": "That individuals should prioritize helping their local community instead of contributing to international causes",
+    "G5-6 PSD II": "This house would ban charities from using the graphic images of suffering to get donations",
+    "G7-9 PSD I": "THBT having 'idols' (E.g., Lebron James, etc.) ultimately does more harm than good.",
+    "G7-12 PSD II": "This House Regrets the glorification of STEM (Science, Technology, Engineering, and Mathematics) subjects",
+    "G7-12 PSD III": "This House Would grant the power to pardon convicted criminals to pardoning committees instead of government executives (e.g. presidents, governors etc.)\n\nFor the purposes of this debate, pardoning committees are made up of random citizens from the local community, similar to how jury panels are constructed. Convicted criminals can apply for a pardon, to be reviewed by the pardoning committee."
+  },
+  "3.4": {
+    "G3-4 PSD I": "That competition destroys teamwork.",
+    "G5-6 PSD I": "That teamwork is more important than having star players.",
+    "G3-4 PSD II": "That you would rather donate directly to people in need instead of to charitable institutions",
+    "G5-6 PSD II": "This house would allow individuals to only donate to charities that have proven measurable impact",
+    "G7-9 PSD I": "THBT it is always worth it to compete, even if it means enduring hardship.",
+    "G7-12 PSD II": "This House Would allow unrestricted use of Artificial Intelliegence (AI) in schools",
+    "G7-12 PSD III": "This House Would abolish prisons"
+  },
+  "4.1": {
+    "G3-4 PSD I": "That we should get a robot to do all our chores.",
+    "G5-6 PSD I": "That schools should have a robot teacher.",
+    "G3-4 PSD II": "That we would require students who study abroad to work at their home country for at least 5 years",
+    "G5-6 PSD II": "THBT Hong Kong schools should teach primarily in cantonese instead of English",
+    "G7-9 PSD I": "THBT storylines in video games should aim to incorporate real life issues. (E.g., Racism, sexism, poverty, etc.). (Primers)",
+    "G7-12 PSD II": "This House Would abolish the olympics",
+    "G7-12 PSD III": "This house believes that environmental movements should be pro-capitalism in their policies and advocacy (e.g., appealing to corporations for green policies, advocating for individual responsibility and sustainable consumption; rather than lobbying governments for extreme regulation, protesting for divestment)"
+  },
+  "4.2": {
+    "G3-4 PSD I": "Protecting Earth is more important than finding life on other planets. (Ideas: recycling motion, environment motion, limit electricity use, etc)",
+    "G5-6 PSD I": "That we should explore space even if it costs a lot of money.",
+    "G3-4 PSD II": "That traveling without camera and smartphone is better than traveling with those gadgets",
+    "G5-6 PSD II": "THBT “homestays” (living with local families) are better than hotels",
+    "G7-9 PSD I": "THBT schools should try to actively 'gamify' learning. (Gamify refers to a process where elements of a video game are incorporated into teaching, working, learning, etc.)",
+    "G7-12 PSD II": "This House Opposes the glorification of global sports over traditional sports",
+    "G7-12 PSD III": "This House Believes That environmental policy should be determined by scientific panels rather than elected officials"
+  },
+  "4.3": {
+    "G3-4 PSD I": "That schools should use computers and tablets more than textbooks.",
+    "G5-6 PSD I": "That virtual world can be better than the real world.",
+    "G3-4 PSD II": "That actors and singers are bad role models for kids.",
+    "G5-6 PSD II": "This house would require all schools to include pop culture (movies, music, social media  trends, memes etc.) in their education curriculum",
+    "G7-9 PSD I": "THBT the rise of 'E-sports' will do more harm than good to the younger generation.",
+    "G7-12 PSD II": "This House Regrets the dominance of foreign players in national sports leagues",
+    "G7-12 PSD III": "This House Would remove patents for eco-friendly technologies"
+  },
+  "4.4": {
+    "G3-4 PSD I": "That AI should not be used to help kids with homework at home",
+    "G5-6 PSD I": "Motion about AI in schools",
+    "G3-4 PSD II": "That the culture of working hard is bad for family.",
+    "G5-6 PSD II": "This house regrets turning serious social problems into jokes and memes online",
+    "G7-9 PSD I": "THBT 'free-to-play' games do more harm than good. (Make infoslide)",
+    "G7-12 PSD II": "This House as this athlete would accept this offer and move to the country\n\nYou are an athlete who has been identified as having huge potential in your sport. Unfortunately, you are a citizen of a country that cannot afford to provide the training and facilities you'd need to achieve your potential. Another country has offered you the training and facilities that could make you an Olympian, and potentially an Olympic Champion. The only condition is that you must renounce your current citizenship and become a citizen of this new country.",
+    "G7-12 PSD III": "This House Believes That environmental movements should shame individuals who do not practice environmentally sustainable habits"
+  },
+  "4.5": {
+    "G7-12 PSD II": "This House Would make school sport voluntary",
+    "G7-12 PSD III": "For conservation of Animals, This House Believes That animals that contributes the most utility to the eco-system should be prioritised"
   }
 }

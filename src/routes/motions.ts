@@ -206,4 +206,44 @@ router.get('/template', (req: Request, res: Response) => {
   res.download(templatePath, 'motion_template.csv');
 });
 
+/**
+ * GET /api/motions/all
+ * Get all motion data for editing (public endpoint)
+ */
+router.get(
+  '/all',
+  asyncHandler(async (req: Request, res: Response) => {
+    const motions = getAllMotions();
+    res.json(motions);
+  })
+);
+
+/**
+ * POST /api/motions/save
+ * Save motion data (public endpoint for now)
+ */
+router.post(
+  '/save',
+  asyncHandler(async (req: Request, res: Response) => {
+    const motions = req.body;
+
+    if (!motions || typeof motions !== 'object') {
+      throw new AppError('Invalid motion data', 400, 'INVALID_DATA');
+    }
+
+    // Save the motions
+    saveMotions(motions);
+
+    logger.info('Motion data saved via editor', {
+      units: Object.keys(motions).length,
+    });
+
+    res.json({
+      success: true,
+      message: 'Motions saved successfully',
+      units: Object.keys(motions).length,
+    });
+  })
+);
+
 export default router;
