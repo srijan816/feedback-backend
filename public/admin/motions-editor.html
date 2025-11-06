@@ -626,16 +626,28 @@
 
         // Add new category
         function addCategory() {
-            const name = prompt('Enter new category name (e.g., G7-12 PSD IV):');
-            if (!name || !name.trim()) return;
+            // Auto-generate next category name
+            const lastCategory = categories[categories.length - 1];
+            let newCategory = 'New Category';
 
-            categories.push(name.trim());
-            categories.sort();
+            // Try to intelligently suggest next category
+            if (lastCategory) {
+                // Check if it follows a pattern like "G7-12 PSD III"
+                const match = lastCategory.match(/PSD (I+|II+|III+|IV+|V+)$/);
+                if (match) {
+                    const roman = match[1];
+                    const nextRoman = roman + 'I'; // Simple increment
+                    newCategory = lastCategory.replace(roman, nextRoman);
+                }
+            }
+
+            categories.push(newCategory);
             renderSpreadsheet();
             hasChanges = true;
             document.getElementById('saveBtn').disabled = false;
             updateInfo();
             saveToUndoStack();
+            showStatus('info', 'New category added. Click the header to rename it.');
         }
 
         // Export to CSV

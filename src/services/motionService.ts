@@ -314,15 +314,16 @@ export function getMotion(category: StudentCategory | null, unit: string): strin
     return ''; // No category, no motion
   }
 
-  const categoryMotions = motions[category];
-  if (!categoryMotions) {
-    logger.warn('No motions found for category', { category });
+  // Motion data structure is: motions[unit][category]
+  const unitMotions = motions[unit];
+  if (!unitMotions) {
+    logger.warn('No motions found for unit', { unit });
     return '';
   }
 
-  const motion = categoryMotions[unit];
+  const motion = unitMotions[category];
   if (!motion) {
-    logger.warn('No motion found for unit', { category, unit });
+    logger.warn('No motion found for category in unit', { category, unit });
     return '';
   }
 
