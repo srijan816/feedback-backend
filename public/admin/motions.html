@@ -332,20 +332,10 @@
 
         let selectedFile = null;
 
-        // Get auth token
-        const token = localStorage.getItem('auth_token') || prompt('Enter your admin token:');
-        if (token) {
-            localStorage.setItem('auth_token', token);
-        }
-
         // Load current unit info
         async function loadUnitInfo() {
             try {
-                const response = await fetch('/api/motions/current', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const response = await fetch('/api/motions/current');
 
                 if (!response.ok) {
                     throw new Error('Failed to load unit info');
@@ -438,9 +428,6 @@
             try {
                 const response = await fetch('/api/motions/upload', {
                     method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    },
                     body: formData
                 });
 
@@ -468,11 +455,7 @@
             testResults.innerHTML = '<div class="loading" style="display: block;"><div class="spinner"></div>Loading test results...</div>';
 
             try {
-                const response = await fetch('/api/motions/test', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const response = await fetch('/api/motions/test');
 
                 if (!response.ok) {
                     throw new Error('Failed to load test results');

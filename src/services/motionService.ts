@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as XLSX from 'xlsx';
+import XLSX from 'xlsx';
 import logger from '../utils/logger.js';
 
 // Category definitions for student classification

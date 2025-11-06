@@ -36,12 +36,10 @@ const upload = multer({
 
 /**
  * POST /api/motions/upload
- * Upload and parse motion data file (admin only)
+ * Upload and parse motion data file
  */
 router.post(
   '/upload',
-  authenticateToken,
-  requireAdmin,
   upload.single('file'),
   asyncHandler(async (req: Request, res: Response) => {
     if (!req.file) {
@@ -133,11 +131,10 @@ router.get(
 
 /**
  * GET /api/motions/current
- * Get current unit information
+ * Get current unit information (public endpoint)
  */
 router.get(
   '/current',
-  authenticateToken,
   asyncHandler(async (req: Request, res: Response) => {
     const unitInfo = getCurrentUnitInfo();
 
@@ -147,11 +144,10 @@ router.get(
 
 /**
  * GET /api/motions/test
- * Test motion retrieval for different categories
+ * Test motion retrieval for different categories (public endpoint)
  */
 router.get(
   '/test',
-  authenticateToken,
   asyncHandler(async (req: Request, res: Response) => {
     const currentUnit = calculateCurrentUnit();
     const categories = [
@@ -179,11 +175,10 @@ router.get(
 
 /**
  * POST /api/motions/query
- * Query motion for specific grade and date
+ * Query motion for specific grade and date (public endpoint)
  */
 router.post(
   '/query',
-  authenticateToken,
   asyncHandler(async (req: Request, res: Response) => {
     const { grade, date } = req.body;
 
