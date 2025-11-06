@@ -29,6 +29,8 @@ import testFeedbackV2Routes from './routes/testFeedbackV2.js';
 import storageRoutes from './routes/storage.js';
 import webhookRoutes from './routes/webhooks.js';
 import teacherPortalRoutes from './routes/teacherPortal.js';
+import motionRoutes from './routes/motions.js';
+import adminAuthRoutes from './routes/adminAuth.js';
 
 const app: Application = express();
 
@@ -57,7 +59,7 @@ app.use((req, res, next) => {
   const teacherPortalPaths = ['srijan', 'tamkeen', 'mai', 'saurav', 'jami', 'naveen'];
   const isTeacherPortal = teacherPortalPaths.some(name => req.path.startsWith(`/${name}`));
 
-  if (req.path === '/upload' || req.path === '/upload-debate' || req.path.startsWith('/prompts') || req.path.startsWith('/feedback') || req.path === '/feedbacktest1' || req.path === '/feedbacktest2' || isTeacherPortal) {
+  if (req.path === '/upload' || req.path === '/upload-debate' || req.path.startsWith('/prompts') || req.path.startsWith('/feedback') || req.path === '/feedbacktest1' || req.path === '/feedbacktest2' || req.path.startsWith('/admin') || isTeacherPortal) {
     helmet({
       contentSecurityPolicy: {
         directives: {
@@ -134,12 +136,23 @@ const uploadLimiter = rateLimit({
 // Serve static files for teacher portal
 app.use('/uploads/docx', express.static(path.join(process.cwd(), 'uploads', 'docx')));
 
+// Serve admin pages
+app.get('/admin/motions', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'admin', 'motions.html'));
+});
+
+app.get('/admin/get-token', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'admin', 'get-token.html'));
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api', adminAuthRoutes); // Admin token helper
 app.use('/api/debates', debateRoutes);
 app.use('/api/speeches', speechRoutes);
 app.use('/api/schedule', scheduleRoutes);
 app.use('/api/prompts', promptRoutes);
+app.use('/api/motions', motionRoutes);
 app.use('/prompts', promptsWebRoutes); // Web UI for prompt management
 app.use('/upload-debate', uploadWebRoutes); // Web UI for debate upload
 app.use('/upload', uploadLimiter, uploadRoutes); // Upload endpoint with stricter rate limiting

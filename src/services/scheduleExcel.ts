@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import logger from '../utils/logger.js';
 import type { StudentLevel, DebateFormat } from '../types/index.js';
+import { getMotionForStudent } from './motionService.js';
 
 interface RawExcelStudent {
   id: string | null;
@@ -25,6 +26,7 @@ interface CourseRecord {
     id: string;
     name: string;
     level: StudentLevel;
+    grade?: string;
   }>;
 }
 
@@ -34,6 +36,7 @@ export interface ExcelScheduleSelection {
     id: string;
     name: string;
     level: StudentLevel;
+    grade?: string;
   }>;
   format: DebateFormat;
   suggestedMotion: string;
@@ -141,6 +144,7 @@ function ensureCourseCache(): CourseRecord[] {
             id,
             name: student.name.trim(),
             level: deriveLevel(student.grade),
+            grade: student.grade?.trim() || undefined,
           };
         });
 
@@ -222,11 +226,15 @@ export function findExcelClassForTimestamp(
 
   const selectedCourse = bestCourse ?? courses[0];
 
+  // Determine motion based on first student's grade and current date
+  const firstStudentGrade = selectedCourse.students[0]?.grade;
+  const suggestedMotion = getMotionForStudent(firstStudentGrade, hongKongDate);
+
   return {
     classId: selectedCourse.classId,
     students: selectedCourse.students,
     format: 'WSDC',
-    suggestedMotion: '',
+    suggestedMotion,
     speechTime: 480,
     startMinutes: selectedCourse.startMinutes,
     dayIndex: selectedCourse.dayIndex,
