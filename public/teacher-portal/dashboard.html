@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2563eb;
+        }
+
+        .header .subtitle {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-online {
+            background: #10b981;
+            color: white;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #1a202c;
+        }
+
+        .card-meta {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .status-draft {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .status-approved {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: #2563eb;
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Teacher Portal - <span id="teacher-name"></span></h1>
+                <div class="subtitle">Welcome back! Here's your overview.</div>
+            </div>
+            <div>
+                <span class="status-badge status-online" id="connection-status">● Connected</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                📝 Active Debates
+            </div>
+            <div id="active-debates">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                ⏳ Pending Reviews
+            </div>
+            <div id="pending-reviews">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                ✅ Feedback History
+            </div>
+            <div id="feedback-history">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <div id="notification-content"></div>
+    </div>
+
+    <script>
+        // Get teacher name from URL path
+        const pathParts = window.location.pathname.split('/');
+        const teacherName = pathParts[1] || 'srijan'; // fallback
+
+        document.getElementById('teacher-name').textContent =
+            teacherName.charAt(0).toUpperCase() + teacherName.slice(1);
+
+        // Use current domain (works for both local dev and production)
+        const apiBase = window.location.origin;
+        const socket = io(apiBase, {
+            path: '/socket.io',
+            transports: ['websocket', 'polling']
+        });
+
+        // WebSocket connection
+        socket.on('connect', () => {
+            console.log('WebSocket connected');
+            document.getElementById('connection-status').innerHTML = '● Connected';
+            document.getElementById('connection-status').className = 'status-badge status-online';
+
+            // Join teacher room
+            socket.emit('join:teacher', {
+                teacherId: teacherName,
+                teacherName: teacherName
+            });
+        });
+
+        socket.on('disconnect', () => {
+            console.log('WebSocket disconnected');
+            document.getElementById('connection-status').innerHTML = '● Disconnected';
+            document.getElementById('connection-status').className = 'status-badge status-secondary';
+        });
+
+        // Listen for feedback ready events
+        socket.on('feedback:ready', (data) => {
+            console.log('Feedback ready:', data);
+            showNotification('🎉 New Feedback Ready!', `Feedback for ${data.student_name} is ready for review.`);
+            loadDashboard();
+        });
+
+        // Listen for DOCX ready events
+        socket.on('docx:ready', (data) => {
+            console.log('DOCX ready:', data);
+            showNotification('📄 DOCX Ready!', 'Your approved feedback is ready for download.');
+            loadDashboard();
+        });
+
+        // Show notification
+        function showNotification(title, message) {
+            const notification = document.getElementById('notification');
+            const content = document.getElementById('notification-content');
+            content.innerHTML = `<strong>${title}</strong><br>${message}`;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const token = localStorage.getItem('auth_token');
+                const headers = {};
+                if (token) {
+                    headers['Authorization'] = `Bearer ${token}`;
+                }
+
+                const response = await fetch(`${apiBase}/api/teachers/${teacherName}/dashboard`, {
+                    headers: headers
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load dashboard');
+                }
+
+                const data = await response.json();
+
+                // Render active debates
+                renderActiveDebates(data.active_debates);
+
+                // Render pending reviews
+                renderPendingReviews(data.pending_reviews);
+
+                // Render history
+                renderFeedbackHistory(data.recent_approved);
+
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+                showNotification('Error', 'Failed to load dashboard. Please refresh.');
+            }
+        }
+
+        function renderActiveDebates(debates) {
+            const container = document.getElementById('active-debates');
+
+            if (debates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p style="margin-bottom: 15px;">📱 No active debates at the moment</p>
+                        <p style="font-size: 14px; color: #64748b;">
+                            Debates will appear here when you start recording speeches via the iOS app.
+                        </p>
+                        <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #2563eb;">
+                            <strong style="color: #1e40af;">Demo Example:</strong><br>
+                            <div style="margin-top: 10px; font-size: 14px;">
+                                When you have an active debate, you'll see:<br>
+                                • Motion title<br>
+                                • Progress bar (e.g., 3/8 speeches completed)<br>
+                                • "View Live" and "Write Notes" buttons
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = debates.map(debate => `
+                <div class="card">
+                    <div class="card-title">${escapeHtml(debate.motion)}</div>
+                    <div class="card-meta">
+                        Progress: ${debate.speeches_completed}/${debate.total_speeches} speeches completed
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${(debate.speeches_completed / debate.total_speeches) * 100}%"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="viewLiveDebate('${debate.id}')">
+                        View Live
+                    </button>
+                    <button class="btn btn-secondary" onclick="writeNotes('${debate.id}')">
+                        Write Notes
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderPendingReviews(reviews) {
+            const container = document.getElementById('pending-reviews');
+
+            if (reviews.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p style="margin-bottom: 15px;">⏳ No feedback pending review</p>
+                        <p style="font-size: 14px; color: #64748b;">
+                            After AI generates feedback from speeches, it will appear here for your review.
+                        </p>
+                        <div style="margin-top: 20px;">
+                            <div class="card" style="background: #fefce8; border-color: #fbbf24;">
+                                <div class="card-title" style="color: #92400e;">📋 Demo: What You'll See</div>
+                                <div class="card-meta" style="color: #78350f;">
+                                    Student: Arjun Mehta (Prime Minister)<br>
+                                    Motion: This House Would Ban Social Media for Minors<br>
+                                    Generated: 2 hours ago<br>
+                                    Status: <span class="status-pending">PENDING REVIEW</span>
+                                </div>
+                                <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                    Review & Edit
+                                </button>
+                                <button class="btn btn-success" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                    ✓ Approve
+                                </button>
+                                <p style="margin-top: 10px; font-size: 12px; color: #78350f;">
+                                    (This is a demo card - real feedback will be interactive)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = reviews.map(review => `
+                <div class="card">
+                    <div class="card-title">${escapeHtml(review.student_name)} (${escapeHtml(review.position)})</div>
+                    <div class="card-meta">
+                        ${escapeHtml(review.motion)}<br>
+                        Generated: ${new Date(review.generated_at).toLocaleString()}<br>
+                        Status: <span class="status-${review.status}">${review.status.toUpperCase()}</span>
+                        ${review.edit_count > 0 ? ` (v${review.edit_count})` : ''}
+                    </div>
+                    <button class="btn btn-primary" onclick="reviewFeedback(${review.feedback_id})">
+                        Review & Edit
+                    </button>
+                    <button class="btn btn-success" onclick="approveFeedback(${review.feedback_id})">
+                        ✓ Approve
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderFeedbackHistory(history) {
+            const container = document.getElementById('feedback-history');
+
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p style="margin-bottom: 15px;">✅ No approved feedback yet</p>
+                        <p style="font-size: 14px; color: #64748b;">
+                            Once you approve feedback, it will be archived here with download links.
+                        </p>
+                        <div style="margin-top: 20px;">
+                            <div class="card" style="background: #f0fdf4; border-color: #10b981;">
+                                <div class="card-title" style="color: #065f46;">📄 Demo: Approved Feedback</div>
+                                <div class="card-meta" style="color: #047857;">
+                                    November 3, 2025 - This House Would Ban Fossil Fuels by 2030<br>
+                                    8 speeches | All approved
+                                </div>
+                                <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                                    📄 Download ZIP
+                                </button>
+                                <p style="margin-top: 10px; font-size: 12px; color: #047857;">
+                                    (This is a demo card - real history will have downloadable DOCX files)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = history.map(item => `
+                <div class="card">
+                    <div class="card-title">${escapeHtml(item.motion)}</div>
+                    <div class="card-meta">
+                        Date: ${new Date(item.debate_date).toLocaleDateString()}<br>
+                        ${item.feedback_count} speeches approved
+                    </div>
+                    <button class="btn btn-secondary" onclick="viewDebate('${item.debate_id}')">
+                        View Details
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function viewLiveDebate(debateId) {
+            window.location.href = `/${teacherName}/debate/${debateId}/live`;
+        }
+
+        function writeNotes(debateId) {
+            window.location.href = `/${teacherName}/debate/${debateId}/notes`;
+        }
+
+        function reviewFeedback(feedbackId) {
+            window.location.href = `/${teacherName}/feedback/${feedbackId}/review`;
+        }
+
+        async function approveFeedback(feedbackId) {
+            if (!confirm('Are you sure you want to approve this feedback? This will generate a DOCX file and lock editing.')) {
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('auth_token');
+                const response = await fetch(
+                    `${apiBase}/api/teachers/${teacherName}/feedback/${feedbackId}/approve`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error('Failed to approve feedback');
+                }
+
+                const result = await response.json();
+                showNotification('Success!', 'Feedback approved! DOCX generation in progress...');
+                loadDashboard();
+
+            } catch (error) {
+                console.error('Approval failed:', error);
+                showNotification('Error', 'Failed to approve feedback. Please try again.');
+            }
+        }
+
+        function viewDebate(debateId) {
+            window.location.href = `/${teacherName}/debate/${debateId}`;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load dashboard on page load
+        loadDashboard();
+
+        // Reload dashboard every 30 seconds
+        setInterval(loadDashboard, 30000);
+    </script>
+</body>
+</html>

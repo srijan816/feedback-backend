@@ -28,6 +28,7 @@ import testFeedbackRoutes from './routes/testFeedback.js';
 import testFeedbackV2Routes from './routes/testFeedbackV2.js';
 import storageRoutes from './routes/storage.js';
 import webhookRoutes from './routes/webhooks.js';
+import teacherPortalRoutes from './routes/teacherPortal.js';
 
 const app: Application = express();
 
@@ -52,19 +53,22 @@ if (!fs.existsSync(uploadsDir)) {
 // Security middleware
 // Configure helmet with relaxed CSP for upload routes
 app.use((req, res, next) => {
-  // For upload UI routes and feedback viewer, allow inline scripts and don't upgrade to HTTPS
-  if (req.path === '/upload' || req.path === '/upload-debate' || req.path.startsWith('/prompts') || req.path.startsWith('/feedback') || req.path === '/feedbacktest1' || req.path === '/feedbacktest2') {
+  // For upload UI routes, feedback viewer, and teacher portal, allow inline scripts and don't upgrade to HTTPS
+  const teacherPortalPaths = ['srijan', 'tamkeen', 'mai', 'saurav', 'jami', 'naveen'];
+  const isTeacherPortal = teacherPortalPaths.some(name => req.path.startsWith(`/${name}`));
+
+  if (req.path === '/upload' || req.path === '/upload-debate' || req.path.startsWith('/prompts') || req.path.startsWith('/feedback') || req.path === '/feedbacktest1' || req.path === '/feedbacktest2' || isTeacherPortal) {
     helmet({
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
-          scriptSrc: ["'self'", "'unsafe-inline'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.socket.io"],
           scriptSrcAttr: ["'unsafe-inline'"],  // Allow inline event handlers (onclick, etc)
           styleSrc: ["'self'", "'unsafe-inline'", "https:"],
           imgSrc: ["'self'", "data:"],
           fontSrc: ["'self'", "https:", "data:"],
           mediaSrc: ["'self'"],  // Allow audio/video from same origin
-          connectSrc: ["'self'"],
+          connectSrc: ["'self'", "ws:", "wss:"],  // Allow WebSocket connections
           formAction: ["'self'"],
           upgradeInsecureRequests: null, // Don't force HTTPS upgrade
         },
@@ -111,6 +115,9 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again later',
   standardHeaders: true,
   legacyHeaders: false,
+  validate: {
+    trustProxy: false, // Disable trust proxy validation since we're behind nginx
+  },
 });
 app.use('/api/', limiter);
 
@@ -119,7 +126,13 @@ const uploadLimiter = rateLimit({
   windowMs: config.rateLimiting.windowMs,
   max: config.rateLimiting.uploadMaxRequests,
   message: 'Too many uploads, please try again later',
+  validate: {
+    trustProxy: false, // Disable trust proxy validation since we're behind nginx
+  },
 });
+
+// Serve static files for teacher portal
+app.use('/uploads/docx', express.static(path.join(process.cwd(), 'uploads', 'docx')));
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -142,6 +155,19 @@ app.use('/', testFeedbackV2Routes); // Test feedback V2 viewer with playable mom
 logger.info('Test feedback V2 route registered at /feedbacktest2');
 app.use('/', storageRoutes); // Serve audio files from storage
 logger.info('Storage route registered at /storage');
+
+// Teacher Portal API routes
+app.use('/', teacherPortalRoutes);
+logger.info('Teacher portal API routes registered');
+
+// Teacher Portal HTML routes
+const validTeachers = ['srijan', 'tamkeen', 'mai', 'saurav', 'jami', 'naveen'];
+validTeachers.forEach(teacherName => {
+  app.get(`/${teacherName}`, (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'public', 'teacher-portal', 'dashboard.html'));
+  });
+  logger.info(`Teacher portal route registered at /${teacherName}`);
+});
 
 // Apply upload rate limiter to speech upload endpoint
 app.use('/api/debates/:debateId/speeches', uploadLimiter);
@@ -212,7 +238,17 @@ async function startServer() {
     await connectRedis();
 
     // Start HTTP server
-    server = app.listen(config.server.port, () => {
+    const http = await import('http');
+    const httpServer = http.createServer(app);
+    server = httpServer;
+
+    // Initialize WebSocket
+    const { initializeWebSocket } = await import('./services/websocket.js');
+    initializeWebSocket(httpServer);
+    logger.info('WebSocket server initialized');
+
+    // Start listening
+    httpServer.listen(config.server.port, () => {
       logger.info(`Server running on port ${config.server.port}`, {
         env: config.server.env,
         nodeVersion: process.version,

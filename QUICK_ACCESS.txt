@@ -1,0 +1,50 @@
+╔════════════════════════════════════════════════════════════════╗
+║         WEB TEACHER PORTAL - QUICK ACCESS GUIDE                 ║
+║                    REMOTE VPS READY                             ║
+╚════════════════════════════════════════════════════════════════╝
+
+🌐 TEACHER PORTAL URLS (Live & Accessible Remotely):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Srijan:  https://api.genalphai.com/srijan
+👤 Tamkeen: https://api.genalphai.com/tamkeen
+👤 Mai:     https://api.genalphai.com/mai
+👤 Saurav:  https://api.genalphai.com/saurav
+👤 Jami:    https://api.genalphai.com/jami
+👤 Naveen:  https://api.genalphai.com/naveen
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ SYSTEM STATUS:
+  • Server: ONLINE
+  • SSL/HTTPS: ENABLED
+  • WebSocket: CONNECTED
+  • Domain: api.genalphai.com
+  • Access: REMOTE (Worldwide)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 QUICK ACTIONS:
+  1. Access portal → Open teacher URL in browser
+  2. View dashboard → See active debates & pending reviews
+  3. Edit feedback → Click "Review & Edit"
+  4. Approve → Click "Approve & Generate DOCX"
+  5. Download → Get Word document when ready
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 SERVER COMMANDS (SSH Access):
+  pm2 status              → Check server status
+  pm2 restart feedback-api → Restart server
+  pm2 logs feedback-api   → View logs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 HEALTH CHECK:
+  curl https://api.genalphai.com/api/health
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 READY TO USE! Share the URLs with your teachers.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
